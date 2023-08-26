@@ -1,9 +1,12 @@
-import userEvent from '@testing-library/user-event';
 import { getUser } from '../../utilities/users-service'
+import { Link } from 'react-router-dom';
 import './App.css';
 import { useState } from "react"
 import AuthPage from "../AuthPage/AuthPage"
-import NewOrderPage from "../MyCartsPage/MyCartsPage"
+import HomePage from "../HomePage/HomePage"
+import MyCartsPage from "../MyCartsPage/MyCartsPage"
+import ProfilePage from "../ProfilePage/ProfilePage"
+import FriendsPage from "../FriendsPage/FriendsPage"
 import OrderHistoryPage from "../OrderHistoryPage/OrderHistoryPage"
 import NavBar from "../../components/NavBar/NavBar";
 
@@ -18,10 +21,14 @@ export default function App() {
       {user ?
         <>
           <NavBar user={user} setUser={setUser}/>
+
           <Routes>
             {/*Route components in here*/}
-            <Route path='/orders/new' element={<NewOrderPage />} />
-            <Route path='/orders' element={<OrderHistoryPage />} />
+            <Route path='/home' element={<HomePage />} />
+            <Route path='/carts' element={<MyCartsPage />} />
+            <Route path='/profile' element={<ProfilePage />} />
+            <Route path='/friends' element={<FriendsPage />} />
+            <Route path='/order/history' element={<OrderHistoryPage />} />
           </Routes>
         </>
         :

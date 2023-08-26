@@ -1,6 +1,10 @@
+import SearchBar from "../../components/SearchBar/SearchBar";
 
-export default function NewOrderPage(){
+export default function MyCartsPage(){
   return(
-    <h1>NewOrderPage</h1>
+    <>
+      <h1>My Carts Page</h1>
+      <SearchBar/>
+    </>
   )
 }

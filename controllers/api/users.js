@@ -5,6 +5,7 @@ const bcrypt = require('bcrypt')
 module.exports = {
   create,
   login,
+  getAllUsers
 };
 
 /* -----------CREATE A NEW USER-------------- */
@@ -50,3 +51,14 @@ async function login (req,res){
   }
 }
 
+/* ----------GET ALL USERS---------- */
+
+async function getAllUsers(req, res){
+  try{
+    const users = await User.find({}).sort('name').exec()
+    console.log(users)
+    res.json(users)
+  } catch {
+    console.error('Unable to retrieve all users')
+  }
+}

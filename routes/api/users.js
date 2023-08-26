@@ -11,4 +11,7 @@ router.post('/', usersCtrl.create);
 // POST /api/users (login a user - sign up)
 router.post('/login', usersCtrl.login);
 
+// GET /api/users (find all users - sign up)
+router.get('/index', usersCtrl.getAllUsers);
+
 module.exports = router

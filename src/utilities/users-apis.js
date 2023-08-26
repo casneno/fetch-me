@@ -13,3 +13,11 @@ export async function signUp(userData){
 export async function login(credentials){
   return sendRequest(`${BASE_URL}/login`, 'POST', credentials)
 }
+
+export async function getAllUsers(){
+  return sendRequest(`${BASE_URL}/index`)
+}
+
+export async function showUser(name){
+  return sendRequest(`${BASE_URL}/${name}`)
+}

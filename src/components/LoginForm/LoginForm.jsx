@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import * as usersService from '../../utilities/users-service';
-import { Box, VStack, Heading, Text, Input, FormControl, FormLabel, HStack, Checkbox, Button } from '@chakra-ui/react';
+import { Box, VStack, Heading, Text, Input, FormControl, FormLabel, HStack, Button } from '@chakra-ui/react';
 
 export default function LoginForm({ setUser }) {
   const [credentials, setCredentials] = useState({
