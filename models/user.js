@@ -19,6 +19,8 @@ const userSchema = new Schema({
     minLength: 3,
     required: true
   },
+  icon: { type: String, default: ''},
+  friends: [{type: Schema.Types.ObjectId, ref:'User', default:null}],
 }, {
   timestamps: true,
   toJSON: {

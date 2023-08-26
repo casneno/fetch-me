@@ -3,7 +3,7 @@ import { getUser } from '../../utilities/users-service'
 import './App.css';
 import { useState } from "react"
 import AuthPage from "../AuthPage/AuthPage"
-import NewOrderPage from "../NewOrderPage/NewOrderPage"
+import NewOrderPage from "../MyCartsPage/MyCartsPage"
 import OrderHistoryPage from "../OrderHistoryPage/OrderHistoryPage"
 import NavBar from "../../components/NavBar/NavBar";
 

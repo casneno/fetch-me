@@ -50,10 +50,3 @@ export async function login(userData) {
 export function logOut() {
   localStorage.removeItem('token');
 }
-
-/* --------------------CHECK TOKEN------------------- */
-export function checkToken(){
-  // We can't forget how to use .then with promises, so let's use it now:
-  return usersAPI.checkToken()
-    .then(dateStr => new Date(dateStr))
-}

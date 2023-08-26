@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import * as usersService from '../../utilities/users-service';
+import { Box, VStack, Heading, Text, Input, FormControl, FormLabel, HStack, Checkbox, Button } from '@chakra-ui/react';
 
 export default function LoginForm({ setUser }) {
   const [credentials, setCredentials] = useState({
@@ -28,17 +29,50 @@ export default function LoginForm({ setUser }) {
   }
 
   return (
-    <div>
-      <div className="form-container">
-        <form autoComplete="off" onSubmit={handleSubmit}>
-          <label>Email</label>
-          <input type="text" name="email" value={credentials.email} onChange={handleChange} required />
-          <label>Password</label>
-          <input type="password" name="password" value={credentials.password} onChange={handleChange} required />
-          <button type="submit">LOG IN</button>
-        </form>
-      </div>
-      <p className="error-message">&nbsp;{error}</p>
-    </div>
+    <>
+      <Box 
+        w={['full','md']} 
+        p={[8, 10]} 
+        mt={[20,'10vh']} 
+        mx='auto' 
+        border={['none', '1px']}
+        borderColor={['', 'gray.300']}
+        borderRadius={10}
+        >
+          <VStack spacing={4} align='flex-start' w='full'>
+            <VStack spacing={1} align={['flex-start', 'center']} w='full'>
+              <Heading>Login</Heading>
+              <Text>Enter your email and password to login</Text>
+            </VStack>
+
+            <FormControl>
+              <FormLabel>Email Address</FormLabel>
+              <Input type="text" name="email" value={credentials.email} onChange={handleChange} variant='filled' required />
+            </FormControl>
+            <FormControl>
+              <FormLabel>Password</FormLabel>
+              <Input type="password" name="password" value={credentials.password} onChange={handleChange} variant='filled' required />
+            </FormControl>
+            <HStack w='full' justify='space-between' >
+              <Button type="submit" colorScheme='yellow' onClick={handleSubmit} w={['full']}>Log In</Button>
+            </HStack>
+          </VStack>
+      </Box>
+
+
+{/*       <div className="auth">
+        <div className="form-container">
+          <form autoComplete="off" onSubmit={handleSubmit}>
+            <label>Email</label>
+            <input type="text" name="email" value={credentials.email} onChange={handleChange} required />
+            <label>Password</label>
+            <input type="password" name="password" value={credentials.password} onChange={handleChange} required />
+            <button type="submit">LOG IN</button>
+          </form>
+        </div>
+        <p className="error-message">&nbsp;{error}</p>
+      </div> */}
+    
+    </>
   );
 }
