@@ -1,6 +1,6 @@
 
-export default function CartContainer(){
+export default function OrderContainer(){
   return(
-    <h1>Cart Container</h1>
+    <h1>Order Container</h1>
   )
 }

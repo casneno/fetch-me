@@ -1,6 +1,6 @@
 
-export default function CartItemCard(){
+export default function OrderItemCard(){
   return(
-    <h1>Cart Item Card</h1>
+    <h1>Order Item Card</h1>
   )
 }

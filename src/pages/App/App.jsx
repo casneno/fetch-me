@@ -1,19 +1,20 @@
 import { getUser } from '../../utilities/users-service'
 import { Link } from 'react-router-dom';
 import './App.css';
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import AuthPage from "../AuthPage/AuthPage"
 import HomePage from "../HomePage/HomePage"
-import MyCartsPage from "../MyCartsPage/MyCartsPage"
+import MyOrdersPage from "../MyOrdersPage/MyOrdersPage"
 import ProfilePage from "../ProfilePage/ProfilePage"
 import FriendsPage from "../FriendsPage/FriendsPage"
 import OrderHistoryPage from "../OrderHistoryPage/OrderHistoryPage"
 import NavBar from "../../components/NavBar/NavBar";
 
 import { Routes, Route } from 'react-router-dom';
+import { getAllUsers } from '../../utilities/users-apis';
 
 export default function App() {
-  const [user, setUser] = useState(getUser()); //initialize the user state to the getUser fucniton in the user-service.js. it returns the user object
+  const [user, setUser] = useState(getUser());
 
   return (
     <main>
@@ -25,9 +26,9 @@ export default function App() {
           <Routes>
             {/*Route components in here*/}
             <Route path='/home' element={<HomePage />} />
-            <Route path='/carts' element={<MyCartsPage />} />
+            <Route path='/orders' element={<MyOrdersPage user={user} />} />
             <Route path='/profile' element={<ProfilePage />} />
-            <Route path='/friends' element={<FriendsPage />} />
+            <Route path='/friends' element={<FriendsPage user={user}/>} />
             <Route path='/order/history' element={<OrderHistoryPage />} />
           </Routes>
         </>

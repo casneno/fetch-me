@@ -3,7 +3,7 @@ import * as usersService from '../../utilities/users-service'
 import { Box } from "@chakra-ui/react";
 import {BottomNavigation, BottomNavigationItem, BottomNavigationIcon,  BottomNavigationLabel} from "chakra-ui-bottom-navigation";
 import { AddIcon, BellIcon, EditIcon } from "@chakra-ui/icons";
-import { BsCart3 } from "react-icons/bs";
+import { BsOrder3 } from "react-icons/bs";
 import { FaHome, FaUserFriends, FaUser } from "react-icons/fa";
 import { FiLogOut } from "react-icons/fi";
 
@@ -39,8 +39,8 @@ export default function NavBar({user, setUser}){
         </BottomNavigationItem>
 
         <BottomNavigationItem>
-          <BottomNavigationIcon boxSize={6} as={BsCart3} />
-          <BottomNavigationLabel><Link to="/carts">Carts</Link></BottomNavigationLabel>
+          <BottomNavigationIcon boxSize={6} as={BsOrder3} />
+          <BottomNavigationLabel><Link to="/orders">Orders</Link></BottomNavigationLabel>
         </BottomNavigationItem>
 
         <BottomNavigationItem>
@@ -64,7 +64,7 @@ export default function NavBar({user, setUser}){
     //   &nbsp; | &nbsp;
     //   <Link to="/profile">PROFILE PAGE ICON</Link>
     //   &nbsp; | &nbsp;
-    //   <Link to="/carts">CARTS PAGE ICON</Link>
+    //   <Link to="/orders">CARTS PAGE ICON</Link>
     //   &nbsp; | &nbsp;
     //   <Link to="/friends">FRIENDS PAGE ICON</Link>
     //   &nbsp; | &nbsp;

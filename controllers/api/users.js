@@ -1,11 +1,12 @@
 const User = require('../../models/user');
 const jwt = require('jsonwebtoken'); //https://jwt.io/libraries
-const bcrypt = require('bcrypt')
+const bcrypt = require('bcrypt');
 
 module.exports = {
   create,
   login,
-  getAllUsers
+  getAllUsers,
+  addFriend
 };
 
 /* -----------CREATE A NEW USER-------------- */
@@ -60,5 +61,19 @@ async function getAllUsers(req, res){
     res.json(users)
   } catch {
     console.error('Unable to retrieve all users')
+  }
+}
+
+/* ------------ ADD FRIEND ----------- */
+
+async function addFriend(req, res){
+  try{
+    const user = await User.findById(req.user._id)
+    const friend = await User.findById(req.body.friendId)
+    user.friends.push(friend)
+    user.save()
+    res.json(user)
+  } catch {
+    console.error( ' Oh no')
   }
 }

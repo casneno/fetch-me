@@ -21,3 +21,7 @@ export async function getAllUsers(){
 export async function showUser(name){
   return sendRequest(`${BASE_URL}/${name}`)
 }
+
+export async function addFriend(friendId, userId){
+  return sendRequest(`${BASE_URL}/${userId}`, 'PUT', {friendId, userId})
+}

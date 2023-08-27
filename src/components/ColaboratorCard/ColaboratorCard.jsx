@@ -1,8 +1,15 @@
+import { Box, Button, ButtonGroup } from '@chakra-ui/react'
+import { IoPersonAddSharp } from "react-icons/io5"
 
-export default function ColaboratorCard({name}){
+export default function ColaboratorCard({user, handleAddFriend}){
   return(
-    <div>
-      {name}
-    </div>
+    <Box display="flex" alignItems="center" justifyContent="space-between" h={10} mt={2} pr={1} pl={3} border='1px' borderColor='gray.200' borderRadius="5px" >
+      {user.name}
+      {handleAddFriend ?
+      <Button leftIcon={<IoPersonAddSharp />} colorScheme='blue' size='sm' onClick={()=> handleAddFriend(user._id)}>Add</Button>
+      :
+      ''
+      }
+    </Box>
   )
 }

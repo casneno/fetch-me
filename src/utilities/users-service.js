@@ -50,3 +50,6 @@ export async function login(userData) {
 export function logOut() {
   localStorage.removeItem('token');
 }
+
+/* -------------FRIENDS AND OTHER USERS LOGIC-------------- */
+

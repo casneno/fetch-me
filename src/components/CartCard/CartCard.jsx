@@ -1,6 +1,6 @@
 
-export default function CartCard(){
+export default function OrderCard(){
   return(
-    <h1>Cart Card</h1>
+    <h1>Order Card</h1>
   )
 }

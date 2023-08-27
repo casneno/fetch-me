@@ -14,4 +14,7 @@ router.post('/login', usersCtrl.login);
 // GET /api/users (find all users - sign up)
 router.get('/index', usersCtrl.getAllUsers);
 
+// PUT /api/users (add a friend)
+router.put('/:id', usersCtrl.addFriend);
+
 module.exports = router
