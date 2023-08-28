@@ -5,16 +5,29 @@ import { useState, useEffect } from "react"
 import AuthPage from "../AuthPage/AuthPage"
 import HomePage from "../HomePage/HomePage"
 import MyOrdersPage from "../MyOrdersPage/MyOrdersPage"
+import OrderPage from "../OrderPage/OrderPage"
 import ProfilePage from "../ProfilePage/ProfilePage"
 import FriendsPage from "../FriendsPage/FriendsPage"
 import OrderHistoryPage from "../OrderHistoryPage/OrderHistoryPage"
 import NavBar from "../../components/NavBar/NavBar";
+import * as ordersAPI from '../../utilities/orders-apis'
 
 import { Routes, Route } from 'react-router-dom';
 import { getAllUsers } from '../../utilities/users-apis';
 
 export default function App() {
   const [user, setUser] = useState(getUser());
+  const [orders, setOrders] = useState([])
+
+  useEffect(() => {
+    async function getAllOrders() {
+      const allOrders = await ordersAPI.getAllOrders()
+      console.log(allOrders)
+      setOrders(allOrders)
+    }
+    getAllOrders()
+
+  }, [])
 
   return (
     <main>
@@ -26,10 +39,11 @@ export default function App() {
           <Routes>
             {/*Route components in here*/}
             <Route path='/home' element={<HomePage />} />
-            <Route path='/orders' element={<MyOrdersPage user={user} />} />
+            <Route path='/orders' element={<MyOrdersPage user={user} orders={orders} setOrders={setOrders}/>} />
             <Route path='/profile' element={<ProfilePage />} />
             <Route path='/friends' element={<FriendsPage user={user}/>} />
-            <Route path='/order/history' element={<OrderHistoryPage />} />
+            <Route path='/orders/:id' element={<OrderPage user={user}/>} />
+            <Route path='/orders/history' element={<OrderHistoryPage />} />
           </Routes>
         </>
         :

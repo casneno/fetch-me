@@ -6,7 +6,7 @@ import OrderCard from "../../components/OrderCard/OrderCard";
 import NewOrder from "../../components/NewOrder/NewOrder"
 
 /* ----------------------------------------------------- */
-export default function OrdersPage({ user, orders, setOrders }) {
+export default function MyOrdersPage({ user, orders, setOrders }) {
   const [myOrders, setMyOrders] = useState([])
 
   // useEffect(() => {

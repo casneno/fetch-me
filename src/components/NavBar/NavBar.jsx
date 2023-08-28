@@ -1,9 +1,9 @@
 import { Link } from 'react-router-dom';
 import * as usersService from '../../utilities/users-service'
-import { Box } from "@chakra-ui/react";
+import { Box, Flex, Spacer, extendTheme } from "@chakra-ui/react";
 import {BottomNavigation, BottomNavigationItem, BottomNavigationIcon,  BottomNavigationLabel} from "chakra-ui-bottom-navigation";
 import { AddIcon, BellIcon, EditIcon } from "@chakra-ui/icons";
-import { BsOrder3 } from "react-icons/bs";
+import { BsCart3 } from "react-icons/bs";
 import { FaHome, FaUserFriends, FaUser } from "react-icons/fa";
 import { FiLogOut } from "react-icons/fi";
 
@@ -24,8 +24,7 @@ export default function NavBar({user, setUser}){
   };
 
   return(
-    <Box>
-
+    <Flex>
       <BottomNavigation onChange={handleChange}>
 
         <BottomNavigationItem>
@@ -39,7 +38,7 @@ export default function NavBar({user, setUser}){
         </BottomNavigationItem>
 
         <BottomNavigationItem>
-          <BottomNavigationIcon boxSize={6} as={BsOrder3} />
+          <BottomNavigationIcon boxSize={6} as={BsCart3} />
           <BottomNavigationLabel><Link to="/orders">Orders</Link></BottomNavigationLabel>
         </BottomNavigationItem>
 
@@ -54,7 +53,7 @@ export default function NavBar({user, setUser}){
         </BottomNavigationItem>
 
       </BottomNavigation>
-    </Box>
+    </Flex>
 
 
     // <nav> {/*this is how we use links:*/}

@@ -5,7 +5,7 @@ const bcrypt = require('bcrypt');
 module.exports={
   getAllOrders,
   getOneOrder,
-  addNewOrder,
+  createNewOrder,
   updateOrder
 }
 
@@ -28,12 +28,13 @@ async function getOneOrder(req, res){
   }
 }
 
-async function addNewOrder(req, res){
+async function createNewOrder(req, res){
   try{
+    console.log(req.body)
     const newOrder = await Order.create(req.body)
-
+    res.status(200).json(newOrder)
   } catch {
-    console.error ('')
+    console.error ('Unable to create order')
   }
 }
 

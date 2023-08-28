@@ -16,8 +16,9 @@ orderItemSchema.virtual('extPrice').get(function(){
   return this.qty * this.item.price;
 });
 
-/* --------CART--------- */
+/* --------ORDER--------- */
 const orderSchema = new Schema({
+  name: { type: String, required:true},
   owner: { type: Schema.Types.ObjectId, ref: 'User', required: true},
   colaborators: [{ type: Schema.Types.ObjectId, ref: 'User' }],
   orderItems: [orderItemSchema],
