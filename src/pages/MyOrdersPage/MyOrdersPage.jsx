@@ -1,7 +1,7 @@
 import SearchBar from "../../components/SearchBar/SearchBar";
 import { useState, useEffect } from 'react';
 import * as ordersAPI from '../../utilities/orders-apis'
-import { Box, Button } from '@chakra-ui/react'
+import { Box, Button, SimpleGrid, Flex, Spacer, Center, Left, Text, Divider, } from '@chakra-ui/react'
 import OrderCard from "../../components/OrderCard/OrderCard";
 import NewOrder from "../../components/NewOrder/NewOrder"
 
@@ -19,13 +19,10 @@ export default function MyOrdersPage({ user, orders, setOrders }) {
 
   // }, [])
 
-  const showMyOrders = orders.filter(order=> order.owner === user._id).map((order, idx)=><OrderCard/>)
+  const showMyOrders = orders.filter(order=> order.owner === user._id).map((order, idx)=><OrderCard key={idx} name={order.name} id={order._id}/>)
 
   const showMyColabs = orders.filter(order=> order.colaborators.some(colab=>colab.toString() === user._id)).map((order, idx)=><OrderCard/>)
 
-  console.log('my orders:', showMyOrders) 
-  console.log(showMyOrders)
-  console.log(showMyColabs)
   
 
   // function showMyColabs(orders) {
@@ -39,17 +36,25 @@ export default function MyOrdersPage({ user, orders, setOrders }) {
 
   return (
     <>
-      <SearchBar />
-      <h1>My Orders Page</h1>
+      <SearchBar/>
       <Box>
-        <h2>My Orders</h2>
+        <Flex>
+          <Center m={2} ml={3}>
+            <Text fontSize='xl'>My Orders</Text>
+          </Center>
+        <Spacer/>
+          <NewOrder user={user} orders={orders} setOrders={setOrders}/>
+        </Flex>
+      </Box>
+      <Divider m={2}/>
+      <SimpleGrid columns={2} spacing={2}>
         {showMyOrders}
-        <NewOrder user={user} orders={orders} setOrders={setOrders}/>
-      </Box>
-      <Box>
-        <h2>My Colaborations</h2>
+      </SimpleGrid>
+      <Divider m={2}/>
+            <Text fontSize='xl' position='left' m={3}>My Colaborations</Text>
+      <SimpleGrid columns={2} spacing={10}>
         {showMyColabs}
-      </Box>
+      </SimpleGrid>
     </>
   )
 }

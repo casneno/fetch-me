@@ -1,15 +1,15 @@
-import {Button, Input, InputGroup, InputLeftElement, InputRightAddon} from "@chakra-ui/react";
+import {Box, Button, Input, InputGroup, InputLeftElement, InputRightAddon} from "@chakra-ui/react";
 import { Search2Icon } from "@chakra-ui/icons";
 
 
 export default function SearchBar(){
 
   function handleChange(){
-    
+
   }
 
   return(
-    <>
+    <Box m={3}>
       <InputGroup borderRadius={5} size="sm">
         <InputLeftElement
           pointerEvents="none"
@@ -25,6 +25,6 @@ export default function SearchBar(){
           </Button>
         </InputRightAddon>
       </InputGroup>
-    </>
+    </Box>
   )
 }

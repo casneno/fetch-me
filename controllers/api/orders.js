@@ -4,7 +4,7 @@ const bcrypt = require('bcrypt');
 
 module.exports={
   getAllOrders,
-  getOneOrder,
+  getOrder,
   createNewOrder,
   updateOrder
 }
@@ -20,13 +20,6 @@ async function getAllOrders(req, res){
   }
 }
 
-async function getOneOrder(req, res){
-  try{
-
-  } catch {
-    console.error ('')
-  }
-}
 
 async function createNewOrder(req, res){
   try{
@@ -38,6 +31,14 @@ async function createNewOrder(req, res){
   }
 }
 
+async function getOrder(req, res){
+  try{
+    await Order.findById(req.params._id)
+    res.json()
+  } catch {
+    console.error ('')
+  }
+}
 async function updateOrder(req, res){
   try{
 

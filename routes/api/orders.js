@@ -5,10 +5,12 @@ const ensureLoggedIn = require('../../config/ensureLoggedIn')
 
 router.get('/', ordersCtrl.getAllOrders)
 
-router.get('/:id', ordersCtrl.getOneOrder)
-
 router.post('/', ordersCtrl.createNewOrder)
 
+router.get('/:id', ordersCtrl.getOrder)
+
 router.put('/:id', ordersCtrl.updateOrder)
+
+router.get('/categories', )
 
 module.exports = router
