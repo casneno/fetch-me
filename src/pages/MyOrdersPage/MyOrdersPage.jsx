@@ -10,6 +10,7 @@ export default function MyOrdersPage({ user, orders, setOrders }) {
   const [myOrders, setMyOrders] = useState([])
 
   // useEffect(() => {
+
   //   async function getAllOrders() {
   //     const allOrders = await ordersAPI.getAllOrders()
   //     console.log(allOrders)
@@ -17,11 +18,14 @@ export default function MyOrdersPage({ user, orders, setOrders }) {
   //   }
   //   getAllOrders()
 
+  //   async function getMyOrders() {
+  //   }
+
   // }, [])
 
-  const showMyOrders = orders.filter(order=> order.owner === user._id).map((order, idx)=><OrderCard key={idx} name={order.name} id={order._id}/>)
+  const showMyOrders = orders.filter(order=> order.owner === user._id).map((order, idx)=><OrderCard key={idx} name={order.name} orderId={order._id}/>)
 
-  const showMyColabs = orders.filter(order=> order.colaborators.some(colab=>colab.toString() === user._id)).map((order, idx)=><OrderCard/>)
+  const showMyColabs = orders.filter(order=> order.colaborators.some(colab=>colab.toString() === user._id)).map((order, idx)=><OrderCard key={idx} name={order.name} orderId={order._id}/>)
 
   
 

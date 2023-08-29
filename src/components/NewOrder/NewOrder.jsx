@@ -36,7 +36,6 @@ export default function NewCart({ user, orders, setOrders }) {
   async function handleSubmit(evt) {
     evt.preventDefault();
     try {
-      console.log(newOrder)
       const addedOrder = await ordersAPI.createNewOrder(newOrder)
       setOrders([...orders, addedOrder])
     } catch {

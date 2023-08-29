@@ -22,13 +22,14 @@ export default function ShoppingSection({user, orderId, order, setOrder}){
     getItems()
   }, []);
 
-  const activeItems = items.filter(item => item.category.name === activeCategory)
-
   async function addItemToOrder(itemId){
     console.log(orderId, itemId)
     const addedItem = await ordersAPI.addItemToOrder(orderId, itemId)
-
+    setOrder({...order, addedItem})
+    console.log('updated order:', order)
   }
+  
+  const activeItems = items.filter(item => item.category.name === activeCategory)
 
   return(
     <Box>

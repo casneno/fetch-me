@@ -10,28 +10,28 @@ import CartSection from "../../components/CartSection/CartSection";
 export default function OrderPage({ user }) {
   const [switchView, setSwitchView] = useState(true);
   const [order, setOrder] = useState([])
-  const params = useParams().id
+  const orderId = useParams().id
 
 useEffect(()=>{
   async function getOrder(orderId){
     const getOrder = await ordersAPI.getOrder(orderId)
     setOrder(getOrder)
   }
-  getOrder(params)
+  getOrder(orderId)
 }, [])
 
   const switchComponentView = () => {
     setSwitchView(!switchView)}
 
-
+    console.log('params',orderId)
 
   return (
     <>
       <Button onClick={switchComponentView}>Change Section</Button>
       {switchView ?
-      <ShoppingSection user={user} orderId={params} order={order} setOrder={setOrder}/>
+      <ShoppingSection user={user} orderId={orderId} order={order} setOrder={setOrder}/>
       :
-      <CartSection user={user} orderId={params} order={order} setOrder={setOrder}/>
+      <CartSection user={user} orderId={orderId} order={order} setOrder={setOrder}/>
       }
 
     </>

@@ -2,11 +2,11 @@ import { Box, Button, ButtonGroup, Card, CardHeader, CardBody, CardFooter, Headi
 import cartImage from '../../images/images/full_cart.png'
 import { Link } from 'react-router-dom';
 
-export default function OrderCard({ name, id }) {
+export default function OrderCard({ name, orderId }) {
 
   return (
     <Card maxH='sm' maxW='sm' _hover={{ boxShadow: 'outline' }} p={0} m={2} borderRadius={20}>
-      <Link to={`/orders/${id}`}>
+      <Link to={`/orders/${orderId}`}>
         <CardBody>
           <Image boxSize='150px'
             src={cartImage}

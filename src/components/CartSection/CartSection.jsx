@@ -7,8 +7,8 @@ import CategoryCard from "../../components/CategoryCard/CategoryCard";
 import ItemCard from "../../components/ItemCard/ItemCard";
 
 
-export default function CartSection({user}){
-
+export default function CartSection({user, orderId}){
+  
   return(
     <Box>
       <h1>Cart Section</h1>

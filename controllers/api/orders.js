@@ -14,11 +14,15 @@ module.exports={
 async function getAllOrders(req, res){
   try{
     const userId = req.user._id
-    const orders = await Order.find({$or: [{owner:userId}, {colaborators: {$in: [userId]}}]})
-    res.status(200).json(orders)
-  } catch {
-    console.error ('')
-    res.status(500).json({message: "error: Couldn't get all ofthe user's orders"})
+    //console.log(req.user)
+    const userOrders = await Order.find({ owner:userId })
+    console.log('orders',userOrders)
+    const userColabs = await Order.find({ colaborators: {$in: [userId] }})
+    //console.log('colabs',userColabs)
+    const allUserOrders = [...userOrders, ...userColabs]
+    res.status(200).json(allUserOrders)
+  } catch (error) {
+    res.status(400).json(error)
   }
 }
 
@@ -46,9 +50,7 @@ async function getOrder(req, res){
 async function addItemToOrder(req, res){
   try{
     const order = await Order.findById(req.body.orderId)
-    const item = await Item.findById(req.body.itemId)
-    order.orderItems.push(item)
-    order.save()
+    await order.addItemToOrder(req.body.itemId)
     res.status(200).json(order)
   } catch {
     console.error ('Could not add item to order')
