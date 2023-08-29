@@ -10,12 +10,12 @@ export async function createNewOrder(orderData){
   return sendRequest(`${BASE_URL}`, 'POST', orderData)
 }
 
-export async function getOrder(id){
-  return sendRequest(`${BASE_URL}/${id}`)
+export async function getOrder(orderId){
+  return sendRequest(`${BASE_URL}/${orderId}`)
 }
 
-export async function updateOrder(){
-  return sendRequest(BASE_URL)
+export async function addItemToOrder(orderId, itemId){
+  return sendRequest(`${BASE_URL}/${orderId}`, 'PUT', {orderId, itemId})
 }
 
 export async function getAllCategories(){

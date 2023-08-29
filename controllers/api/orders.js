@@ -1,12 +1,14 @@
 const Order = require('../../models/order');
+const Item = require('../../models/item');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
+const { OrderedBulkOperation } = require('mongodb');
 
 module.exports={
   getAllOrders,
   getOrder,
   createNewOrder,
-  updateOrder
+  addItemToOrder
 }
 
 async function getAllOrders(req, res){
@@ -33,16 +35,22 @@ async function createNewOrder(req, res){
 
 async function getOrder(req, res){
   try{
-    await Order.findById(req.params._id)
-    res.json()
+    console.log('req.orderId:', req.params.id)
+    const order = await Order.findById(req.params.id)
+    res.json(order)
   } catch {
     console.error ('')
   }
 }
-async function updateOrder(req, res){
-  try{
 
+async function addItemToOrder(req, res){
+  try{
+    const order = await Order.findById(req.body.orderId)
+    const item = await Item.findById(req.body.itemId)
+    order.orderItems.push(item)
+    order.save()
+    res.status(200).json(order)
   } catch {
-    console.error ('')
+    console.error ('Could not add item to order')
   }
 }

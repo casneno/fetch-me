@@ -1,6 +1,7 @@
 import { Box, Button, ButtonGroup, Card, CardHeader, CardBody, CardFooter, Heading, Image, Text, Stack, Divider } from '@chakra-ui/react'
 
-export default function ItemCard({name, emoji, price }){
+export default function ItemCard({item, orderId, addItemToOrder }){
+  console.log()
   return(
     <Card maxW='xs'>
       <CardBody>
@@ -10,15 +11,15 @@ export default function ItemCard({name, emoji, price }){
           borderRadius='lg'
         />
         <Stack mt='6' spacing='3'>
-          <Heading size='md'>{name}</Heading>
+          <Heading size='md'>{item.name}</Heading>
           <Text color='blue.600' fontSize='2xl'>
-            ${price}
+            ${item.price}
           </Text>
         </Stack>
       </CardBody>
       <Divider />
       <CardFooter>
-          <Button variant='ghost' colorScheme='blue'>
+          <Button variant='ghost' colorScheme='blue' onClick={()=>addItemToOrder(item._id)}>
             Add to cart
           </Button>
       </CardFooter>

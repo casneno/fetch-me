@@ -7,11 +7,9 @@ import CategoryCard from "../../components/CategoryCard/CategoryCard";
 import ItemCard from "../../components/ItemCard/ItemCard";
 
 
-export default function ShoppingSection({user}){
-  const [categories, setCategories] = useState([])
+export default function ShoppingSection({user, orderId, order, setOrder}){
   const [activeCategory, setActiveCategory] = useState()
   const categoriesRef = useRef([]);
-  const [colabs, setColabs] = useState([])
   const [items, setItems] = useState([])
 
   useEffect(function() {
@@ -26,6 +24,12 @@ export default function ShoppingSection({user}){
 
   const activeItems = items.filter(item => item.category.name === activeCategory)
 
+  async function addItemToOrder(itemId){
+    console.log(orderId, itemId)
+    const addedItem = await ordersAPI.addItemToOrder(orderId, itemId)
+
+  }
+
   return(
     <Box>
       <h1>Categories</h1>
@@ -35,7 +39,7 @@ export default function ShoppingSection({user}){
       <Divider />
       <h1>Items</h1>
       <SimpleGrid columns={3} spacing={2}>
-      {activeItems.map((item,idx)=><ItemCard key={idx} name={item.name} emoji={item.emoji} price={item.price}/>)}
+      {activeItems.map((item,idx)=><ItemCard key={idx} item={item} orderId={orderId} addItemToOrder={addItemToOrder} />)}
       </SimpleGrid>
     </Box>
   )

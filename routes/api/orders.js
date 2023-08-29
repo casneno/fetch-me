@@ -9,7 +9,7 @@ router.post('/', ordersCtrl.createNewOrder)
 
 router.get('/:id', ordersCtrl.getOrder)
 
-router.put('/:id', ordersCtrl.updateOrder)
+router.put('/:id', ordersCtrl.addItemToOrder)
 
 router.get('/categories', )
 
