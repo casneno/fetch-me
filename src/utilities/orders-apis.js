@@ -22,3 +22,6 @@ export async function getAllCategories(){
   return sendRequest(`${BASE_URL}/categories`)
 }
 
+export function setItemQtyInCart(itemId, newQty) {
+  return sendRequest(`${BASE_URL}/order/qty`, 'PUT', { itemId, newQty });
+}

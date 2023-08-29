@@ -8,7 +8,8 @@ module.exports={
   getAllOrders,
   getOrder,
   createNewOrder,
-  addItemToOrder
+  addItemToOrder,
+  setItemQtyInCart
 }
 
 async function getAllOrders(req, res){
@@ -55,4 +56,10 @@ async function addItemToOrder(req, res){
   } catch {
     console.error ('Could not add item to order')
   }
+}
+
+async function setItemQtyInCart(req, res) {
+  const cart = await Order.getOrder(req.user._id);
+  await cart.setItemQtyInCart(req.body.itemId, req.body.newQty)
+  res.json(cart);
 }
