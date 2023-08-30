@@ -8,7 +8,7 @@ import OrderItemCard from "../../components/OrderItemCard/OrderItemCard";
 import ReviewOrder from "../../components/ReviewOrder/ReviewOrder";
 
 
-export default function CartSection({user, orderId, order}){
+export default function CartSection({user, orderId, order, setOrder}){
   const [orderItems, setOrderItems] = useState(order.orderItems)
 
   /* get the order information */
@@ -24,6 +24,7 @@ export default function CartSection({user, orderId, order}){
   async function handleChangeQty(orderId, itemId, newQty){
     const updatedOrder = await ordersAPI.setItemQuantity(orderId, itemId, newQty)
     setOrderItems(updatedOrder.orderItems)
+    setOrder(updatedOrder)
   }
 
   let showOrderItems = <strong>This Order currently has no items</strong>
