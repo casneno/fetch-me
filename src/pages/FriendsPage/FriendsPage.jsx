@@ -5,7 +5,7 @@ import * as usersAPI from '../../utilities/users-apis'
 import { Box, Button, ButtonGroup } from '@chakra-ui/react'
 import { IoPersonAddSharp } from "react-icons/io5"
 
-export default function FriendsPage({user}){
+export default function FriendsPage({user, setUser}){
   const [userList, setUserList] = useState([]) //other users
   const [friends, setFriends] = useState([]) //user friends
   const [search, setSearch] = useState('')
@@ -13,6 +13,7 @@ export default function FriendsPage({user}){
   async function handleAdd(friendId){
     const updatedUser = await usersAPI.addFriend(friendId, user._id)
     setFriends(updatedUser.friends)
+    setUser(updatedUser)
   }
 
   useEffect(()=>{
@@ -44,7 +45,7 @@ export default function FriendsPage({user}){
   if (userList.length > 0) {
     otherUsersList = userList.map(user => 
     <Box>
-      <ColaboratorCard key={user._id} user={user} handleAdd={handleAdd}/>
+      <ColaboratorCard key={user._id} user={user} handleAdd={handleAdd} userList={userList}/>
     </Box>
     )
   }
