@@ -15,23 +15,15 @@ export default function FriendsPage({user}){
     setFriends(updatedUser.friends)
   }
 
-  async function findFriend(){
-
-  }
-
-
   useEffect(()=>{
     async function getAllUsers(){
       try{
         const allUsers = await usersAPI.getAllUsers();
-        console.log('allUsers', allUsers)
         setFriends(user.friends)
-        console.log('user.friends', user.friends)
         const filteredUsers = allUsers.filter(obj=> !user.friends.some(friend=> friend === obj._id))
-        console.log('other users:', filteredUsers)
         setUserList(filteredUsers)
-      } catch {
-        console.error('whoooops')
+      } catch (error){
+        console.error(error)
       }
     }
     getAllUsers()

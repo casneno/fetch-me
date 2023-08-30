@@ -13,6 +13,6 @@ router.put('/:id', ordersCtrl.addItemToOrder)
 
 router.get('/categories', )
 
-router.put('/cart/qty', ordersCtrl.setItemQuantity);
+router.put('/order/qty', ordersCtrl.setItemQuantity);
 
 module.exports = router

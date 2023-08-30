@@ -54,6 +54,7 @@ export default function MyOrdersPage({ user, orders, setOrders }) {
       <SimpleGrid columns={2} spacing={10}>
         {showMyColabs}
       </SimpleGrid>
+      
     </>
   )
 }

@@ -41,16 +41,6 @@ orderSchema.virtual('orderId').get(function(){
   return this.id.slice(-6).toUpperCase();
 });
 
-orderSchema.statics.getOrder = function(userId) {
-  return this.findOneAndUpdate(
-    //query object
-    { user: userId, isPaid: false},
-    // update doc - provides values when inserting
-    { user: userId },
-    // upsert option
-    { upsert: true, new: true }
-  );
-};
 
 // Instance method for adding an item to a order (unpaid order)
 orderSchema.methods.addItemToOrder = async function (itemId) {
@@ -68,21 +58,13 @@ orderSchema.methods.addItemToOrder = async function (itemId) {
 
 // Instance method to set an item's qty in the order (will add item if does not exist)
 orderSchema.methods.setItemQtyInCart = function(itemId, newQty) {
-
-  const order = this;
-  // Find the line item in the order for the menu item
-  const orderItem = order.orderItems.find(orderItem => orderItem.item._id.equals(itemId));
-  if (orderItem && newQty <= 0) {
-    // Calling deleteOne(), removes itself from the order.lineItems array
-    // Note that video shows remove(), which has been removed 😀 in Mongoose v7
+  const orderItem = this.orderItems.find(orderItem => orderItem.id === (itemId));
+  if (newQty <= 0) {
     orderItem.deleteOne();
   } else if (orderItem) {
-    // Set the new qty - positive value is assured thanks to prev if
     orderItem.qty = newQty;
   }
-  // return the save() method's promise
-  return order.save();
+  return this.save();
 };
-
 
 module.exports = mongoose.model('Order', orderSchema);

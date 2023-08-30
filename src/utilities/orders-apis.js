@@ -23,5 +23,5 @@ export async function getAllCategories(){
 }
 
 export function setItemQuantity(orderId, itemId, newQty) {
-  return sendRequest(`${BASE_URL}/${orderId}/${itemId}`, 'PUT', { orderId, itemId, newQty });
+  return sendRequest(`${BASE_URL}/order/qty`, 'PUT', { orderId, itemId, newQty });
 }
