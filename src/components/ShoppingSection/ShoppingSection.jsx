@@ -12,6 +12,7 @@ export default function ShoppingSection({user, orderId, order, setOrder}){
   const categoriesRef = useRef([]);
   const [items, setItems] = useState([])
 
+  /* Get all items to show and set the category */
   useEffect(function() {
     async function getItems() {
       const items = await itemsAPI.getAllItems();
@@ -22,6 +23,7 @@ export default function ShoppingSection({user, orderId, order, setOrder}){
     getItems()
   }, []);
 
+  /* adds item in the order in the database and adds item to the order state */
   async function addItemToOrder(itemId){
     console.log(orderId, itemId)
     const addedItem = await ordersAPI.addItemToOrder(orderId, itemId)
@@ -29,6 +31,7 @@ export default function ShoppingSection({user, orderId, order, setOrder}){
     console.log('updated order:', order)
   }
   
+  /* variable to display  items from the active category*/
   const activeItems = items.filter(item => item.category.name === activeCategory)
 
   return(

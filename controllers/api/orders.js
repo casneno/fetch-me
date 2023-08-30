@@ -9,7 +9,7 @@ module.exports={
   getOrder,
   createNewOrder,
   addItemToOrder,
-  setItemQtyInCart
+  setItemQuantity
 }
 
 async function getAllOrders(req, res){
@@ -58,8 +58,11 @@ async function addItemToOrder(req, res){
   }
 }
 
-async function setItemQtyInCart(req, res) {
-  const cart = await Order.getOrder(req.user._id);
-  await cart.setItemQtyInCart(req.body.itemId, req.body.newQty)
-  res.json(cart);
+async function setItemQuantity(req, res) {
+  console.log('orderId:', req.body.orderId)
+  console.log('itemId:', req.body.itemId)
+  console.log('newQty:', req.body.newQty)
+  const order = await Order.getOrder(req.body.orderId);
+  await order.setItemQtyInCart(req.body.itemId, req.body.newQty)
+  res.json(order);
 }

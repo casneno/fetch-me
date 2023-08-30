@@ -10,6 +10,7 @@ import OrderItemCard from "../../components/OrderItemCard/OrderItemCard";
 export default function CartSection({user, orderId}){
   const [orderItems, setOrderItems] = useState([])
 
+  /* get the order information */
   useEffect(()=>{
     async function getOrder(orderId){
       const order = await ordersAPI.getOrder(orderId)
@@ -18,19 +19,15 @@ export default function CartSection({user, orderId}){
     getOrder(orderId)
   }, [])
 
-  async function removeItemFromOrder(itemId){
-    // const remove = await ordersAPI.removeItem(itemId)
+  /* increases or decreases the item quantity in the order. Also removes the item from the order if the quantity is 0 */
+  async function handleChangeQty(orderId, itemId, newQty){
+    const updatedCart = await ordersAPI.setItemQuantity(orderId, itemId, newQty)
+    setOrderItems(...orderItems, updatedCart)
   }
-
-  async function handleChangeQty(itemId, newQty){
-    const updatedCart = await ordersAPI.setItemQtyInCart(itemId, newQty)
-    setOrderItems(updatedCart)
-  }
-
 
   return(
     <Box>
-      {orderItems.map((item, idx) => <OrderItemCard item={item} removeItemFromOrder={removeItemFromOrder}/>)}
+      {orderItems.map((item, idx) => <OrderItemCard item={item} orderId={orderId} handleChangeQty={handleChangeQty}/>)}
     </Box>
   )
 }

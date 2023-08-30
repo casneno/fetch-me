@@ -1,6 +1,7 @@
 import { Box, Button, ButtonGroup, Card, CardHeader, CardBody, CardFooter, Heading, Image, Text, Stack, Divider } from '@chakra-ui/react'
 
-export default function OrderItemCard({item, removeItemFromOrder, handleChangeQty}){
+export default function OrderItemCard({item, orderId, handleChangeQty}){
+  console.log(orderId)
   console.log(item._id)
   console.log(item)
 
@@ -9,8 +10,7 @@ export default function OrderItemCard({item, removeItemFromOrder, handleChangeQt
       <CardBody>
         <Stack mt='6' spacing='3'>
           <Heading size='md'>{item.name}</Heading>
-          <Text color='blue.600' fontSize='2xl'>
-            Qty: 
+          <Text color='blue.600' fontSize='2xl'> 
             Total: ${item.item.price*item.qty}
           </Text>
         </Stack>
@@ -18,13 +18,10 @@ export default function OrderItemCard({item, removeItemFromOrder, handleChangeQt
       <Divider />
       <CardFooter>
         <Box>
-          <Button onClick={() => handleChangeQty(item._id, item.qty-1)}>-</Button>
+          <Button onClick={() => handleChangeQty(orderId, item._id, item.qty-1)}>-</Button>
           <Box>{item.qty}</Box>
-          <Button onClick={() => handleChangeQty(item._id, item.qty+1)}>+</Button>
+          <Button onClick={() => handleChangeQty(orderId, item._id, item.qty+1)}>+</Button>
         </Box>
-        <Button variant='ghost' colorScheme='blue' onClick={()=>removeItemFromOrder(item._id)}>
-          Remove
-        </Button>
       </CardFooter>
     </Card>
   )

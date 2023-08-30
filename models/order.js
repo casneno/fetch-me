@@ -68,7 +68,7 @@ orderSchema.methods.addItemToOrder = async function (itemId) {
 
 // Instance method to set an item's qty in the order (will add item if does not exist)
 orderSchema.methods.setItemQtyInCart = function(itemId, newQty) {
-  // this keyword is bound to the order (order doc)
+
   const order = this;
   // Find the line item in the order for the menu item
   const orderItem = order.orderItems.find(orderItem => orderItem.item._id.equals(itemId));

@@ -19,19 +19,7 @@ export default function App() {
   const [user, setUser] = useState(getUser());
   const [orders, setOrders] = useState([])
 
-
   /* Load all orders into the state */
-  useEffect(() => {
-    async function getAllOrders() {
-      console.log('checkpoint')
-      const allUserOrders = await ordersAPI.getAllOrders()
-      console.log(allUserOrders)
-      setOrders(allUserOrders)
-
-    }
-    getAllOrders()
-  }, [])
-
 
 
   return (

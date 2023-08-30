@@ -7,36 +7,31 @@ import NewOrder from "../../components/NewOrder/NewOrder"
 
 /* ----------------------------------------------------- */
 export default function MyOrdersPage({ user, orders, setOrders }) {
-  const [myOrders, setMyOrders] = useState([])
+  const [newOrder, setNewOrder] = useState({
+    name: '',
+    owner: user._id,
+    colaborators: [],
+    orderItems: [],
+    isPaid: false
+  })
 
-  // useEffect(() => {
+  useEffect(() => {
 
-  //   async function getAllOrders() {
-  //     const allOrders = await ordersAPI.getAllOrders()
-  //     console.log(allOrders)
-  //     setOrders(allOrders)
-  //   }
-  //   getAllOrders()
+    async function getAllOrders() {
+      const allOrders = await ordersAPI.getAllOrders()
+      console.log(allOrders)
+      setOrders(allOrders)
+    }
+    getAllOrders()
 
-  //   async function getMyOrders() {
-  //   }
+  }, [])
 
-  // }, [])
+  /* Display only orders which I am the owner and that are not yet paid */
+  const showMyOrders = orders.filter(order=> order.owner === user._id && order.isPaid===false).map((order, idx)=><OrderCard key={idx} name={order.name} orderId={order._id}/>)
 
-  const showMyOrders = orders.filter(order=> order.owner === user._id).map((order, idx)=><OrderCard key={idx} name={order.name} orderId={order._id}/>)
+  /* Display only orders with which I am colaborating and that are not yet paid */
+  const showMyColabs = orders.filter(order=> order.colaborators.some(colab=>colab.toString() === user._id && order.isPaid===false)).map((order, idx)=><OrderCard key={idx} name={order.name} orderId={order._id}/>)
 
-  const showMyColabs = orders.filter(order=> order.colaborators.some(colab=>colab.toString() === user._id)).map((order, idx)=><OrderCard key={idx} name={order.name} orderId={order._id}/>)
-
-  
-
-  // function showMyColabs(orders) {
-  //   return orders.filter({ colaborators: user._id })
-  // }
-
-  // async function addNewOrder() {
-  //   const newOrder = await ordersAPI.addNewOrder()
-  //   setOrders([...orders, newOrder])
-  // }
 
   return (
     <>
@@ -47,7 +42,7 @@ export default function MyOrdersPage({ user, orders, setOrders }) {
             <Text fontSize='xl'>My Orders</Text>
           </Center>
         <Spacer/>
-          <NewOrder user={user} orders={orders} setOrders={setOrders}/>
+          <NewOrder user={user} orders={orders} setOrders={setOrders} newOrder={newOrder} setNewOrder={setNewOrder}/>
         </Flex>
       </Box>
       <Divider m={2}/>

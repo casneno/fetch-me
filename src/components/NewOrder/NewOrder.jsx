@@ -18,14 +18,7 @@ import {
 
 /* --------------------------------------------------------------------------- */
 
-export default function NewCart({ user, orders, setOrders }) {
-  const [newOrder, setNewOrder] = useState({
-    name: '',
-    owner: user._id,
-    colaborators: [],
-    orderItems: [],
-    isPaid: false
-  })
+export default function NewCart({ user, orders, setOrders, newOrder, setNewOrder }) {
 
   const { isOpen, onOpen, onClose } = useDisclosure()
 
@@ -41,6 +34,12 @@ export default function NewCart({ user, orders, setOrders }) {
     } catch {
       console.error('Unable to Create Order')
     }
+  }
+
+  /* Closes the Modal after creating cart */
+  const handleCreateandClose = (evt)=>{
+    handleSubmit(evt);
+    onClose();
   }
 
 
@@ -63,7 +62,7 @@ export default function NewCart({ user, orders, setOrders }) {
           </ModalBody>
 
           <ModalFooter>
-            <Button colorScheme='blue' mr={3} type='submit' onClick={handleSubmit} w={['full']}>
+            <Button colorScheme='blue' mr={3} type='submit' onClick={handleCreateandClose} w={['full']}>
               Create
             </Button>
             <Button onClick={onClose}>Cancel</Button>
