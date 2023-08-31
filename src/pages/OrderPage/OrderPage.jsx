@@ -23,6 +23,7 @@ export default function OrderPage({ user, setUser }) {
       try{
         const getOrder = await ordersAPI.getOrder(orderId)
         setOrder(getOrder)
+        setColabs(getOrder.colaborators)
       } catch (err) {
         console.error(err)
       }
@@ -49,14 +50,6 @@ export default function OrderPage({ user, setUser }) {
   const switchComponentView = () => {
     setSwitchView(!switchView)
   }
-
-  console.log('params', orderId)
-
-  console.log('user:', user)
-  console.log('friends:', friends)
-  console.log('otherUsers:', otherUsers)
-  console.log('order:', order)
-  console.log('colabs:', colabs)
 
   return (
     <>

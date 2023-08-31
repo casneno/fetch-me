@@ -40,7 +40,6 @@ export function getUser() {
 /* ---------------------LOGIN--------------------- */
 export async function login(userData) {
   const token = await usersAPI.login(userData);
-  console.log(token)
   localStorage.setItem('token', token);
   return getUser();
 }

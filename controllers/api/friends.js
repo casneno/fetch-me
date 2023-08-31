@@ -9,7 +9,6 @@ module.exports = {
 async function getAllFriends(req, res){
   try{
     const users = await User.find({}).sort('name').exec()
-    console.log(users)
     res.json(users)
   } catch {
     console.error('Unable to retrieve all users')

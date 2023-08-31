@@ -7,6 +7,7 @@ module.exports={
   getOrder,
   createNewOrder,
   addColab,
+  removeColab,
   addItemToOrder,
   setItemQuantity
 }
@@ -27,7 +28,6 @@ async function getUserOrders(req, res){
 /* OK */
 async function createNewOrder(req, res){
   try{
-    console.log(req.body)
     const newOrder = await Order.create(req.body)
     res.status(200).json(newOrder)
   } catch {
@@ -37,24 +37,40 @@ async function createNewOrder(req, res){
 
 async function getOrder(req, res){
   try{
-    const order = await Order.findById(req.params.id)
+    const order = await Order.findById(req.params.id).populate('colaborators')
     res.json(order)
   } catch {
     console.error ('')
   }
 }
-
+/* OK - adds target colaborator to target order, returns populated order object */
 async function addColab(req, res){
   try{
     const colab = await User.findById(req.body.colabId)
     const order = await Order.findById(req.body.orderId)
-    const updatedOrder = order.colaborators.push(colab)
-    console.log(updatedOrder)
-    res.status(200).json(updatedOrder)
+    order.colaborators.push(colab)
+    order.save()
+    console.log(order)
+    const popOrder = await Order.findById(req.body.orderId).populate('colaborators')
+    res.status(200).json(popOrder)
   } catch (err) {
     console.error(err)
   }
 }
+/* OK - removes target coalborator from target order, returns populated order object */
+async function removeColab(req, res){
+  try{
+    const order = await Order.findById(req.body.orderId)
+    const colab = await User.findById(req.body.colabId)
+    order.colaborators.splice(order.colaborators.indexOf(colab.id), 1)
+    order.save()
+    const popOrder = await Order.findById(req.body.orderId).populate('colaborators')
+    res.status(200).json(popOrder)
+  } catch (err) {
+    console.error(err)
+  }
+}
+
 /* OK */
 async function addItemToOrder(req, res){
   try{

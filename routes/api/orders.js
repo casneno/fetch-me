@@ -11,6 +11,8 @@ router.get('/:id', ordersCtrl.getOrder)
 
 router.put('/:id/addcolab', ordersCtrl.addColab)
 
+router.put('/:id/rmcolab', ordersCtrl.removeColab)
+
 router.put('/:id', ordersCtrl.addItemToOrder)
 
 router.get('/categories', )

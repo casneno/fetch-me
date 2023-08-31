@@ -12,20 +12,30 @@ export default function AvatarList({ user, friends, setFriends, otherUsers, cola
   
   // const avatars = order.colaborators.map(colab => <Avatar size="md" name={colab.name} src={colab.icon} />)
 
-  const friendsList = friends.map(friend=><ColaboratorCard key={friend._id} user={friend} isFriend={true} handleAdd={()=> handleAdd(friend._id)} />)
-  
-  const otherUsersList = otherUsers.map(otherUser=><ColaboratorCard key={otherUser._id} user={otherUser} isFriend={true} handleAdd={()=> handleAdd(otherUser._id)} />)
+  const colabIds = colabs.map(colab => colab._id);
+  const filteredFriends = friends.filter(friend => !colabIds.includes(friend._id));
+  const filteredOtherUsers = otherUsers.filter(otherUser => !colabIds.includes(otherUser._id));
 
-  const colaboratorsList = colabs.map(colab => <ColaboratorCard key={colab._id} user={colab} isFriend={false} handleRemove={handleRemove} />)
+  const friendsList = filteredFriends.map(friend=><ColaboratorCard key={Math.random()*1000} user={friend} isFriend={false} handleAdd={()=> handleAdd(friend._id)} />)
+  
+  const otherUsersList = filteredOtherUsers.map(otherUser=><ColaboratorCard key={Math.random()*1000} user={otherUser} isFriend={false} handleAdd={()=> handleAdd(otherUser._id)} />)
+
+  const colaboratorsList = colabs.map(colab => (<ColaboratorCard key={Math.random()*1000} user={colab} isFriend={true} handleRemove={()=>handleRemove(colab._id)} />));
   
 
   async function handleAdd(colabId){
-    const addColab = await ordersAPI.addColab(order._id, colabId)
-    console.log('neworder', addColab)
+    try{
+      const updatedOrder = await ordersAPI.addColab(order._id, colabId)
+      console.log('neworder', updatedOrder)
+      setColabs(updatedOrder.colaborators)
+    } catch (err) {
+      console.error(err)
+    }
   }
 
-  async function handleRemove(){
-
+  async function handleRemove(colabId){
+    const updatedOrder = await ordersAPI.removeColab(order._id, colabId)
+    setColabs(updatedOrder.colaborators)
   }
 
   return (
@@ -48,17 +58,17 @@ export default function AvatarList({ user, friends, setFriends, otherUsers, cola
           </ModalHeader>
 
           <ModalBody pb={6}>
-              {/* <Box>
-                {colabs.length>0 ? {colaboratorsList} : <strong>This cart has no colaborators</strong>}
+              <Box>
+                {colabs.length>0 ? colaboratorsList : <strong>This cart has no colaborators</strong>}
               </Box>
               <Box>
                 <Text>Friends</Text>
-                {friends.length>0 ? {friendsList} : <strong>You have no friends</strong>}
+                {friends.length>0 ? friendsList : <strong>You have no friends</strong>}
               </Box>
               <Box>
                 <Text>Other Users</Text>
-                {otherUsers.length > 0 ? {otherUsersList} : <strong>No more users to display</strong>}
-              </Box> */}
+                {otherUsers.length > 0 ? otherUsersList : <strong>No more users to display</strong>}
+              </Box>
 
           </ModalBody>
 

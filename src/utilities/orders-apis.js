@@ -18,6 +18,10 @@ export async function addColab(orderId, colabId){
   return sendRequest(`${BASE_URL}/${orderId}/addcolab`, 'PUT', {orderId, colabId})
 }
 
+export async function removeColab(orderId, colabId){
+  return sendRequest(`${BASE_URL}/${orderId}/rmcolab`, 'PUT', {orderId, colabId})
+}
+
 export async function addItemToOrder(orderId, itemId){
   return sendRequest(`${BASE_URL}/${orderId}`, 'PUT', {orderId, itemId})
 }
