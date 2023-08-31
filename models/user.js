@@ -19,7 +19,7 @@ const userSchema = new Schema({
     minLength: 3,
     required: true
   },
-  icon: { type: String, default: 'http://bit.ly/3sF4HWT'},
+  icon: { type: String, default: 'https://bit.ly/broken-link'},
   friends: [{type: Schema.Types.ObjectId, ref:'User', default:null}],
 }, {
   timestamps: true,

@@ -18,6 +18,9 @@ router.get('/index', usersCtrl.getAllUsers);
 router.get('/:id', usersCtrl.getUser)
 
 // PUT /api/users (add a friend)
-router.put('/:id', usersCtrl.addFriend);
+router.put('/:id/addfriend', usersCtrl.addFriend);
+
+// PUT /api/users (remove a friend)
+router.put('/:id/rmfriend', usersCtrl.removeFriend);
 
 module.exports = router

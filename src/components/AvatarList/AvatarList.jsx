@@ -8,10 +8,11 @@ import ColaboratorCard from '../ColaboratorCard/ColaboratorCard'
 export default function AvatarList({ user, friends, setFriends, otherUsers, colabs, setColabs, order }) {
 
   const { isOpen, onOpen, onClose } = useDisclosure()
-
   
-  // const avatars = order.colaborators.map(colab => <Avatar size="md" name={colab.name} src={colab.icon} />)
+  
+  const avatars = colabs.map(colab => <Avatar size="md" name={colab.name} src={colab.icon} />)
 
+  /* ---------------- DISPLAY HANDLERS ----------- */
   const colabIds = colabs.map(colab => colab._id);
   const filteredFriends = friends.filter(friend => !colabIds.includes(friend._id));
   const filteredOtherUsers = otherUsers.filter(otherUser => !colabIds.includes(otherUser._id));
@@ -22,7 +23,8 @@ export default function AvatarList({ user, friends, setFriends, otherUsers, cola
 
   const colaboratorsList = colabs.map(colab => (<ColaboratorCard key={Math.random()*1000} user={colab} isFriend={true} handleRemove={()=>handleRemove(colab._id)} />));
   
-
+  /* ---------------------- EVENT HANDLERS ------------------- */
+  
   async function handleAdd(colabId){
     try{
       const updatedOrder = await ordersAPI.addColab(order._id, colabId)
@@ -38,12 +40,15 @@ export default function AvatarList({ user, friends, setFriends, otherUsers, cola
     setColabs(updatedOrder.colaborators)
   }
 
+
   return (
     <Box display="flex" alignItems="center" justifyContent="space-between" h={10} mt={2} p={8} pr={3} border='1px' borderColor='gray.200' borderRadius="5px" >
-      {order.length > 0
+      {colabs.length > 0
       ?
-      <Avatar size="md" name={order.owner.name} src={order.owner.icon} />
-      /* {avatars} */
+      <Box>
+        <Avatar size="md" name={order.owner.name} src={order.owner.icon} />
+        {avatars}
+      </Box>
       :
       <strong>No orders to display</strong>
       }

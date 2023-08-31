@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import About from  '../../components/About/About'
 
 export default function HomePage(){
 
@@ -9,6 +10,7 @@ export default function HomePage(){
       <Link to="/orders">CARTS PAGE ICON</Link>
       <Link to="/friends">FRIENDS PAGE ICON</Link>
       <Link to="/order/history">ORDER HISTORY PAGE ICON</Link>
+      <About />
     </>
   )
 }

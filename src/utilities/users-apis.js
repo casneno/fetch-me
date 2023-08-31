@@ -19,6 +19,10 @@ export async function getUser(userId){
 }
 
 export async function addFriend(friendId, userId){
-  return sendRequest(`${BASE_URL}/${userId}`, 'PUT', {friendId, userId})
+  return sendRequest(`${BASE_URL}/${userId}/addfriend`, 'PUT', {friendId, userId})
+}
+
+export async function removeFriend(friendId, userId){
+  return sendRequest(`${BASE_URL}/${userId}/rmfriend`, 'PUT', {friendId, userId})
 }
 

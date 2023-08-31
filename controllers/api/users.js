@@ -9,6 +9,7 @@ module.exports = {
   getAllUsers,
   getUser,
   addFriend,
+  removeFriend
 };
 
 /* -----------CREATE A NEW USER-------------- */
@@ -73,7 +74,7 @@ async function getUser(req, res){
   }
 }
 
-/* ------------ ADD FRIEND ----------- */
+/* ------------ FRIEND HANDLING ----------- */
 
 async function addFriend(req, res){
   try{
@@ -81,8 +82,22 @@ async function addFriend(req, res){
     const friend = await User.findById(req.body.friendId)
     user.friends.push(friend)
     user.save()
-    res.json(user)
-  } catch {
-    console.error( ' Oh no')
+    const popUser = await User.findById(req.user._id).populate('friends')
+    res.status(200).json(popUser)
+  } catch (err){
+    console.error(err)
+  }
+}
+
+async function removeFriend(req, res){
+  try{
+    const user = await User.findById(req.user._id)
+    const friend = await User.findById(req.body.friendId)
+    user.friends.splice(user.friends.indexOf(friend.id), 1)
+    user.save()
+    const popUser = await User.findById(req.user._id).populate('friends')
+    res.status(200).json(popUser)
+  } catch (err){
+    console.error(err)
   }
 }

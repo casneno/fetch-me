@@ -33,7 +33,7 @@ export default function App() {
             {/*Route components in here*/}
             <Route path='/home' element={<HomePage />} />
             <Route exact path='/orders' element={<MyOrdersPage user={user} orders={orders} setOrders={setOrders}/>} />
-            <Route path='/profile' element={<ProfilePage />} />
+            <Route path='/profile' element={<ProfilePage user={user} setUser={setUser}/>} />
             <Route path='/friends' element={<FriendsPage user={user} setUser={setUser}/>} />
             <Route path='/orders/:id' element={<OrderPage user={user} setUser={setUser}/>} />
             <Route path='/orders/history' element={<OrderHistoryPage />} />
