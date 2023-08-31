@@ -20,7 +20,7 @@ export default function App() {
   const [orders, setOrders] = useState([])
 
   /* Load all orders into the state */
-
+  console.log('user:', user)
 
   return (
     <main>
@@ -35,7 +35,7 @@ export default function App() {
             <Route exact path='/orders' element={<MyOrdersPage user={user} orders={orders} setOrders={setOrders}/>} />
             <Route path='/profile' element={<ProfilePage />} />
             <Route path='/friends' element={<FriendsPage user={user} setUser={setUser}/>} />
-            <Route path='/orders/:id' element={<OrderPage user={user}/>} />
+            <Route path='/orders/:id' element={<OrderPage user={user} setUser={setUser}/>} />
             <Route path='/orders/history' element={<OrderHistoryPage />} />
           </Routes>
         </>

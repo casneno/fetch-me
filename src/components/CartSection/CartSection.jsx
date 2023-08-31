@@ -29,7 +29,6 @@ export default function CartSection({user, orderId, order, setOrder}){
 
   let showOrderItems = <strong>This Order currently has no items</strong>
 
-  console.log(orderItems)
 
   if (orderItems.length > 0) {
     showOrderItems = orderItems.map((item, idx) => <OrderItemCard key={idx} item={item} orderId={orderId} handleChangeQty={handleChangeQty}/>)

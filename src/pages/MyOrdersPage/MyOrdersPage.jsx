@@ -17,12 +17,11 @@ export default function MyOrdersPage({ user, orders, setOrders }) {
 
   useEffect(() => {
 
-    async function getAllOrders() {
-      const allOrders = await ordersAPI.getAllOrders()
-      console.log(allOrders)
+    async function getUserOrders(userId) {
+      const allOrders = await ordersAPI.getUserOrders(userId)
       setOrders(allOrders)
     }
-    getAllOrders()
+    getUserOrders(user._id)
 
   }, [])
 

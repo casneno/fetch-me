@@ -1,12 +1,14 @@
 const User = require('../../models/user');
 const jwt = require('jsonwebtoken'); //https://jwt.io/libraries
 const bcrypt = require('bcrypt');
+//const { getUser } = require('../../src/utilities/users-apis');
 
 module.exports = {
   create,
   login,
   getAllUsers,
-  addFriend
+  getUser,
+  addFriend,
 };
 
 /* -----------CREATE A NEW USER-------------- */
@@ -61,6 +63,15 @@ async function getAllUsers(req, res){
     res.json(users)
   } catch {
     console.error('Unable to retrieve all users')
+  }
+}
+
+async function getUser(req, res){
+  try{
+    const user = await User.findById(req.params.id).populate('friends')
+    res.json(user)
+  } catch (error) {
+    console.error(error)
   }
 }
 

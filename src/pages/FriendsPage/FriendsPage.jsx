@@ -6,23 +6,19 @@ import { Box, Button, ButtonGroup } from '@chakra-ui/react'
 import { IoPersonAddSharp } from "react-icons/io5"
 
 export default function FriendsPage({user, setUser}){
-  const [userList, setUserList] = useState([]) //other users
+  const [strangers, setStrangers] = useState([]) //other users
   const [friends, setFriends] = useState([]) //user friends
   const [search, setSearch] = useState('')
 
-  async function handleAdd(friendId){
-    const updatedUser = await usersAPI.addFriend(friendId, user._id)
-    setFriends(updatedUser.friends)
-    setUser(updatedUser)
-  }
-
+  
   useEffect(()=>{
     async function getAllUsers(){
       try{
         const allUsers = await usersAPI.getAllUsers();
-        setFriends(user.friends)
+        const getUser = await usersAPI.getUser(user._id)
+        setFriends(getUser.friends)
         const filteredUsers = allUsers.filter(obj=> !user.friends.some(friend=> friend === obj._id))
-        setUserList(filteredUsers)
+        setStrangers(filteredUsers)
       } catch (error){
         console.error(error)
       }
@@ -30,22 +26,36 @@ export default function FriendsPage({user, setUser}){
     getAllUsers()
   }, [])
 
+
+  async function handleAdd(friendId){
+    const allUsers = await usersAPI.getAllUsers()
+    const updatedUser = await usersAPI.addFriend(friendId, user._id)
+    setFriends(updatedUser.friends)
+    const strangers = allUsers.filter(user => !updatedUser.friends.includes(user._id))
+    setStrangers(strangers)
+    setUser(updatedUser)
+  }
+
+  async function handleRemove(friendId){
+
+  }
+
   let friendsList = <strong>Sorry, but you have no friends at the moment</strong>
 
   if (friends.length > 0) {
     friendsList = friends.map(user => 
     <Box>
-      <ColaboratorCard key={user._id} user={user}/>
+      <ColaboratorCard key={user._id} user={user} isFriend={true} handleRemove={handleRemove}/>
     </Box>
     )
   }
 
   let otherUsersList = <strong>Sorry, but there are no users at the moment</strong>
 
-  if (userList.length > 0) {
-    otherUsersList = userList.map(user => 
+  if (strangers.length > 0) {
+    otherUsersList = strangers.map(user => 
     <Box>
-      <ColaboratorCard key={user._id} user={user} handleAdd={handleAdd} userList={userList}/>
+      <ColaboratorCard key={user._id} user={user} isFriend={false} handleAdd={handleAdd}/>
     </Box>
     )
   }

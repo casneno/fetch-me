@@ -1,25 +1,22 @@
 const Order = require('../../models/order');
+const User = require('../../models/user');
 const Item = require('../../models/item');
-const jwt = require('jsonwebtoken');
-const bcrypt = require('bcrypt');
-const { OrderedBulkOperation } = require('mongodb');
 
 module.exports={
-  getAllOrders,
+  getUserOrders,
   getOrder,
   createNewOrder,
+  addColab,
   addItemToOrder,
   setItemQuantity
 }
 
-async function getAllOrders(req, res){
+/* OK */
+async function getUserOrders(req, res){
   try{
-    const userId = req.user._id
-    //console.log(req.user)
+    const userId = req.params.id
     const userOrders = await Order.find({ owner:userId })
-    console.log('orders',userOrders)
     const userColabs = await Order.find({ colaborators: {$in: [userId] }})
-    //console.log('colabs',userColabs)
     const allUserOrders = [...userOrders, ...userColabs]
     res.status(200).json(allUserOrders)
   } catch (error) {
@@ -27,7 +24,7 @@ async function getAllOrders(req, res){
   }
 }
 
-
+/* OK */
 async function createNewOrder(req, res){
   try{
     console.log(req.body)
@@ -40,7 +37,6 @@ async function createNewOrder(req, res){
 
 async function getOrder(req, res){
   try{
-    console.log('req.orderId:', req.params.id)
     const order = await Order.findById(req.params.id)
     res.json(order)
   } catch {
@@ -48,6 +44,18 @@ async function getOrder(req, res){
   }
 }
 
+async function addColab(req, res){
+  try{
+    const colab = await User.findById(req.body.colabId)
+    const order = await Order.findById(req.body.orderId)
+    const updatedOrder = order.colaborators.push(colab)
+    console.log(updatedOrder)
+    res.status(200).json(updatedOrder)
+  } catch (err) {
+    console.error(err)
+  }
+}
+/* OK */
 async function addItemToOrder(req, res){
   try{
     const order = await Order.findById(req.body.orderId)
@@ -57,13 +65,9 @@ async function addItemToOrder(req, res){
     console.error ('Could not add item to order')
   }
 }
-
+/* OK */
 async function setItemQuantity(req, res) {
-  console.log('orderId:', req.body.orderId)
-  console.log('itemId:', req.body.itemId)
-  console.log('newQty:', req.body.newQty)
   const order = await Order.findById(req.body.orderId);
   await order.setItemQtyInCart(req.body.itemId, req.body.newQty)
-  console.log('opdatedOrder:', order)
   res.json(order);
 }

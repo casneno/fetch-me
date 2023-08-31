@@ -2,8 +2,8 @@ import sendRequest from './send-request';
 
 const BASE_URL = '/api/orders'
 
-export async function getAllOrders(){
-  return sendRequest(BASE_URL)
+export async function getUserOrders(userId){
+  return sendRequest(`${BASE_URL}/user/${userId}`)
 }
 
 export async function createNewOrder(orderData){
@@ -12,6 +12,10 @@ export async function createNewOrder(orderData){
 
 export async function getOrder(orderId){
   return sendRequest(`${BASE_URL}/${orderId}`)
+}
+
+export async function addColab(orderId, colabId){
+  return sendRequest(`${BASE_URL}/${orderId}/addcolab`, 'PUT', {orderId, colabId})
 }
 
 export async function addItemToOrder(orderId, itemId){
