@@ -2,10 +2,10 @@ import {Box, Button, Input, InputGroup, InputLeftElement, InputRightAddon} from 
 import { Search2Icon } from "@chakra-ui/icons";
 
 
-export default function SearchBar(){
+export default function SearchBar({setSearch}){
 
-  function handleChange(){
-
+  function handleChange(evt){
+    setSearch(evt.target.value);
   }
 
   return(

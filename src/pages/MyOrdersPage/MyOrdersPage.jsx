@@ -34,7 +34,6 @@ export default function MyOrdersPage({ user, orders, setOrders }) {
 
   return (
     <>
-      <SearchBar/>
       <Box>
         <Flex>
           <Center m={2} ml={3}>

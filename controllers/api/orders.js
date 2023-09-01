@@ -48,13 +48,15 @@ async function addColab(req, res){
   try{
     const colab = await User.findById(req.body.colabId)
     const order = await Order.findById(req.body.orderId)
-    order.colaborators.push(colab)
-    order.save()
-    console.log(order)
+    if (!order.colaborators.includes(colab._id)) {
+      order.colaborators.push(colab);
+      await order.save();
+    }
     const popOrder = await Order.findById(req.body.orderId).populate('colaborators')
     res.status(200).json(popOrder)
   } catch (err) {
     console.error(err)
+    res.status(500).json({ error: 'Unable to add collaborator to order' });
   }
 }
 /* OK - removes target coalborator from target order, returns populated order object */

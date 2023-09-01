@@ -8,23 +8,23 @@ import ColaboratorCard from '../ColaboratorCard/ColaboratorCard'
 export default function AvatarList({ user, friends, setFriends, otherUsers, colabs, setColabs, order }) {
 
   const { isOpen, onOpen, onClose } = useDisclosure()
-  
-  
-  const avatars = colabs.map(colab => <Avatar size="md" name={colab.name} src={colab.icon} />)
+
+  const avatars = colabs.map(colab => <Avatar size="md" name={colab.name||'Unnamed User'} src={colab.icon} />)
 
   /* ---------------- DISPLAY HANDLERS ----------- */
   const colabIds = colabs.map(colab => colab._id);
+  const friendIds = friends.map(friend => friend._id);
   const filteredFriends = friends.filter(friend => !colabIds.includes(friend._id));
-  const filteredOtherUsers = otherUsers.filter(otherUser => !colabIds.includes(otherUser._id));
-
-  const friendsList = filteredFriends.map(friend=><ColaboratorCard key={Math.random()*1000} user={friend} isFriend={false} handleAdd={()=> handleAdd(friend._id)} />)
+  const filteredOtherUsers = otherUsers.filter(otherUser => !colabIds.includes(otherUser._id) && !friendIds.includes(otherUser._id) && otherUser._id !== user._id);
+  console.log('filtered friends', filteredFriends)
+  const friendsList = filteredFriends.map(friend=><ColaboratorCard key={friend._id} person={friend} isFriend={false} handleAdd={()=> handleAdd(friend._id)} />)
   
-  const otherUsersList = filteredOtherUsers.map(otherUser=><ColaboratorCard key={Math.random()*1000} user={otherUser} isFriend={false} handleAdd={()=> handleAdd(otherUser._id)} />)
+  const otherUsersList = filteredOtherUsers.map(otherUser=><ColaboratorCard key={otherUser._id} person={otherUser} isFriend={false} handleAdd={()=> handleAdd(otherUser._id)} />)
 
-  const colaboratorsList = colabs.map(colab => (<ColaboratorCard key={Math.random()*1000} user={colab} isFriend={true} handleRemove={()=>handleRemove(colab._id)} />));
+  const colaboratorsList = colabs.map(colab => (<ColaboratorCard key={colab._id} person={colab} isFriend={true} handleRemove={()=>handleRemove(colab._id)} />));
   
   /* ---------------------- EVENT HANDLERS ------------------- */
-  
+
   async function handleAdd(colabId){
     try{
       const updatedOrder = await ordersAPI.addColab(order._id, colabId)
@@ -64,11 +64,11 @@ export default function AvatarList({ user, friends, setFriends, otherUsers, cola
 
           <ModalBody pb={6}>
               <Box>
-                {colabs.length>0 ? colaboratorsList : <strong>This cart has no colaborators</strong>}
+                {colabs.length > 0 ? colaboratorsList : <strong>This cart has no colaborators</strong>}
               </Box>
               <Box>
                 <Text>Friends</Text>
-                {friends.length>0 ? friendsList : <strong>You have no friends</strong>}
+                {friends.length > 0 ? friendsList : <strong>You have no friends</strong>}
               </Box>
               <Box>
                 <Text>Other Users</Text>

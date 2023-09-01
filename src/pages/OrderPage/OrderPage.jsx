@@ -54,7 +54,7 @@ export default function OrderPage({ user, setUser }) {
   return (
     <>
       
-      <AvatarList order={order} friends={friends} otherUsers={otherUsers} colabs={colabs} setColabs={setColabs} />
+      <AvatarList user={user} order={order} friends={friends} otherUsers={otherUsers} colabs={colabs} setColabs={setColabs} />
 
       <Button alignItems="center" onClick={switchComponentView}>Change Section</Button>
       {switchView ?
