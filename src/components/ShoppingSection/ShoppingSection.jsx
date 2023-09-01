@@ -40,7 +40,7 @@ export default function ShoppingSection({user, orderId, order, setOrder}){
         <CategoryCard categories={categoriesRef.current} activeCategory={activeCategory} setActiveCategory={setActiveCategory}/>
       </Stack>
       <Divider />
-      <SimpleGrid columns={[2,4]} spacing={2} overflow='auto'>
+      <SimpleGrid columns={[3,4]} spacing={2} overflowY='auto' maxHeight="calc(100vh - 500px)">
       {activeItems.map((item,idx)=><ItemCard key={idx} item={item} orderId={orderId} addItemToOrder={addItemToOrder} />)}
       </SimpleGrid>
     </>

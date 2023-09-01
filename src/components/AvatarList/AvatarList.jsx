@@ -48,7 +48,7 @@ export default function AvatarList({ user, friends, setFriends, otherUsers, cola
 
 
   return (
-    <Box display="flex" alignItems="center" justifyContent="space-between" h={10} mt={2} p={8} pr={3} border='1px' borderColor='gray.200' borderRadius="5px" >
+    <Box position="sticky" top={0} display="flex" alignItems="center" justifyContent="space-between" h={10} mt={2} p={8} pr={3} border='1px' borderColor='gray.200' borderRadius="5px" >
       {colabs.length > 0
       ?
       <Box>

@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef, } from 'react';
 import { useParams } from 'react-router-dom';
-import { Avatar, AvatarBadge, AvatarGroup, Box, Button, Divider, SimpleGrid, Stack } from '@chakra-ui/react'
+import { Avatar, AvatarBadge, AvatarGroup, Box, Button, Divider, SimpleGrid, Stack, Container } from '@chakra-ui/react'
 import * as usersAPI from '../../utilities/users-apis';
 import * as ordersAPI from '../../utilities/orders-apis'
 import ShoppingSection from "../../components/ShoppingSection/ShoppingSection"
@@ -53,16 +53,18 @@ export default function OrderPage({ user, setUser }) {
 
   return (
     <>
-      
+      <Container maxW="container.md">
+
       <AvatarList user={user} order={order} friends={friends} otherUsers={otherUsers} colabs={colabs} setColabs={setColabs} />
 
-      <Button alignItems="center" onClick={switchComponentView}>Change Section</Button>
+      <Button position="sticky" top="60px" alignItems="center" onClick={switchComponentView}>Change Section</Button>
       {switchView ?
         <ShoppingSection user={user} orderId={orderId} order={order} setOrder={setOrder} />
         :
         <CartSection user={user} orderId={orderId} order={order} setOrder={setOrder} />
       }
 
+      </Container>
     </>
   )
 }

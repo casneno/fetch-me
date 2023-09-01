@@ -2,7 +2,7 @@ import { getUser } from '../../utilities/users-service'
 import { Link } from 'react-router-dom';
 import './App.css';
 import { useState, useEffect } from "react"
-import { Box } from '@chakra-ui/react'
+import { Box, CSSReset } from '@chakra-ui/react'
 import AuthPage from "../AuthPage/AuthPage"
 import HomePage from "../HomePage/HomePage"
 import MyOrdersPage from "../MyOrdersPage/MyOrdersPage"
@@ -25,6 +25,7 @@ export default function App() {
 
   return (
     <>
+      <CSSReset />
       {/*if the user is logged in, show order apge, else show the authentication*/}
       {user ?
         <Box position="absolute" h="100%">

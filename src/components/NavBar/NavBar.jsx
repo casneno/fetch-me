@@ -6,6 +6,7 @@ import { AddIcon, BellIcon, EditIcon } from "@chakra-ui/icons";
 import { BsCart3 } from "react-icons/bs";
 import { FaHome, FaUserFriends, FaUser } from "react-icons/fa";
 import { FiLogOut } from "react-icons/fi";
+import './NavBar.css'
 
 
 export default function NavBar({user, setUser}){
@@ -24,16 +25,16 @@ export default function NavBar({user, setUser}){
   };
 
   return(
-      <BottomNavigation onChange={handleChange} as='footer' position='fixed' w='100%' zIndex={2}>
+      <BottomNavigation onChange={handleChange} as='footer' position='fixed' bottom={0} w='100vw' zIndex={2} maxHeight="70px">
       <Link to="/home">
         <BottomNavigationItem>
-          <BottomNavigationIcon boxSize={8} as={FaHome} />
+          <BottomNavigationIcon boxSize={6} as={FaHome} />
           <BottomNavigationLabel>Home</BottomNavigationLabel>
         </BottomNavigationItem>
         </Link>
         <Link to="/friends">
         <BottomNavigationItem>
-          <BottomNavigationIcon boxSize={8} as={FaUserFriends} />
+          <BottomNavigationIcon boxSize={6} as={FaUserFriends} />
           <BottomNavigationLabel>Friends</BottomNavigationLabel>
         </BottomNavigationItem>
         </Link>

@@ -2,7 +2,7 @@ import ColaboratorCard from '../../components/ColaboratorCard/ColaboratorCard'
 import SearchBar from '../../components/SearchBar/SearchBar'
 import { useState, useEffect } from 'react';
 import * as usersAPI from '../../utilities/users-apis'
-import { Avatar, Box, Button, ButtonGroup, Divider } from '@chakra-ui/react'
+import { Avatar, Box, Button, ButtonGroup, Container, Divider, Flex, SimpleGrid } from '@chakra-ui/react'
 import { IoPersonAddSharp } from "react-icons/io5"
 
 export default function FriendsPage({ user, setUser }) {
@@ -81,16 +81,20 @@ export default function FriendsPage({ user, setUser }) {
 
   return (
     <>
+    <Flex direction="column" align="center" justify="center" width="90vw" p={5}>
       <h1>Friends Page</h1>
       <SearchBar setSearch={setSearch} />
-      <Divider />
-      <Box m={2}>My Friends</Box>
-      <Divider />
-      {friendsList}
-      <Divider />
-      <Box m={2} >Other Users</Box>
-      <Divider />
-      {strangersList}
-    </>
+      <Divider my={4} />
+      <Box m={1}>My Friends</Box>
+      <SimpleGrid columns={[1, 2, 3]} spacing={1} width="100%">
+        {friendsList}
+      </SimpleGrid>
+      <Divider my={4} />
+      <Box m={2}>Other Users</Box>
+      <SimpleGrid columns={[1, 2, 3]} spacing={1} width="100%">
+        {strangersList}
+      </SimpleGrid>
+    </Flex>
+  </>
   )
 }
