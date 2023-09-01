@@ -2,7 +2,7 @@ import { Box, Button, ButtonGroup, Card, CardHeader, CardBody, CardFooter, Headi
 
 export default function OrderItemCard({item, orderId, handleChangeQty}){
   return(
-    <Card maxW='xs'>
+    <Card maxW='xs' zIndex={0}>
       <CardBody>
         <Stack mt='6' spacing='3'>
           <Heading size='md'>

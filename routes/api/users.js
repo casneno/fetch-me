@@ -12,15 +12,15 @@ router.post('/', usersCtrl.create);
 router.post('/login', usersCtrl.login);
 
 // GET /api/users (find all users - sign up)
-router.get('/index', usersCtrl.getAllUsers);
+router.get('/index', ensureLoggedIn, usersCtrl.getAllUsers);
 
 // GET /api/users (find user)
-router.get('/:id', usersCtrl.getUser)
+router.get('/:id', ensureLoggedIn, usersCtrl.getUser)
 
 // PUT /api/users (add a friend)
-router.put('/:id/addfriend', usersCtrl.addFriend);
+router.put('/:id/addfriend', ensureLoggedIn, usersCtrl.addFriend);
 
 // PUT /api/users (remove a friend)
-router.put('/:id/rmfriend', usersCtrl.removeFriend);
+router.put('/:id/rmfriend', ensureLoggedIn, usersCtrl.removeFriend);
 
 module.exports = router

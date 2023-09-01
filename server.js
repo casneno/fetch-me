@@ -2,6 +2,7 @@ const express = require('express');
 const path = require('path');
 const favicon = require('serve-favicon');
 const logger = require('morgan');
+const ensureLoggedIn = require('./config/ensureLoggedIn')
 
 //Always require and configure near the top
 require('dotenv').config();
@@ -28,8 +29,8 @@ app.use(require('./config/checkToken'))
   // return JSON
 // })
 app.use('/api/users', require('./routes/api/users'));
-app.use('/api/orders', require('./routes/api/orders'));
-app.use('/api/items', require('./routes/api/items'));
+app.use('/api/orders', ensureLoggedIn, require('./routes/api/orders'));
+app.use('/api/items', ensureLoggedIn, require('./routes/api/items'));
 
 
 // The following "catch all" route (note the *) is necessary

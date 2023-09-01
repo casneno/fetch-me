@@ -24,36 +24,38 @@ export default function NavBar({user, setUser}){
   };
 
   return(
-    <Flex>
-      <BottomNavigation onChange={handleChange}>
-
+      <BottomNavigation onChange={handleChange} as='footer' position='fixed' w='100%' zIndex={2}>
+      <Link to="/home">
         <BottomNavigationItem>
-          <BottomNavigationIcon boxSize={6} as={FaHome} />
-          <BottomNavigationLabel><Link to="/home">Home</Link></BottomNavigationLabel>
+          <BottomNavigationIcon boxSize={8} as={FaHome} />
+          <BottomNavigationLabel>Home</BottomNavigationLabel>
         </BottomNavigationItem>
-
+        </Link>
+        <Link to="/friends">
         <BottomNavigationItem>
-          <BottomNavigationIcon boxSize={6} as={FaUserFriends} />
-          <BottomNavigationLabel><Link to="/friends">Friends</Link></BottomNavigationLabel>
+          <BottomNavigationIcon boxSize={8} as={FaUserFriends} />
+          <BottomNavigationLabel>Friends</BottomNavigationLabel>
         </BottomNavigationItem>
-
+        </Link>
+        <Link to="/orders">
         <BottomNavigationItem>
           <BottomNavigationIcon boxSize={6} as={BsCart3} />
-          <BottomNavigationLabel><Link to="/orders">Orders</Link></BottomNavigationLabel>
+          <BottomNavigationLabel>Orders</BottomNavigationLabel>
         </BottomNavigationItem>
-
+        </Link>
+        <Link to="/profile">
         <BottomNavigationItem>
           <BottomNavigationIcon boxSize={6} as={FaUser} />
-          <BottomNavigationLabel><Link to="/profile">Profile</Link></BottomNavigationLabel>
+          <BottomNavigationLabel>Profile</BottomNavigationLabel>
         </BottomNavigationItem>
-
+        </Link>
+        <Link to="" onClick={handleLogout}>
         <BottomNavigationItem>
           <BottomNavigationIcon boxSize={6} as={FiLogOut} />
-          <BottomNavigationLabel><Link to="" onClick={handleLogout}>Log Out</Link></BottomNavigationLabel>
+          <BottomNavigationLabel>Log Out</BottomNavigationLabel>
         </BottomNavigationItem>
-
+        </Link>
       </BottomNavigation>
-    </Flex>
 
 
     // <nav> {/*this is how we use links:*/}

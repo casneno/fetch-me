@@ -38,8 +38,8 @@ export function getUser() {
 }
 
 /* ---------------------LOGIN--------------------- */
-export async function login(userData) {
-  const token = await usersAPI.login(userData);
+export async function login(credentials) {
+  const token = await usersAPI.login(credentials);
   localStorage.setItem('token', token);
   return getUser();
 }

@@ -35,16 +35,14 @@ export default function ShoppingSection({user, orderId, order, setOrder}){
   const activeItems = items.filter(item => item.category.name === activeCategory)
 
   return(
-    <Box>
-      <h1>Categories</h1>
+    <>
       <Stack>
         <CategoryCard categories={categoriesRef.current} activeCategory={activeCategory} setActiveCategory={setActiveCategory}/>
       </Stack>
       <Divider />
-      <h1>Items</h1>
-      <SimpleGrid columns={3} spacing={2}>
+      <SimpleGrid columns={[2,4]} spacing={2} overflow='auto'>
       {activeItems.map((item,idx)=><ItemCard key={idx} item={item} orderId={orderId} addItemToOrder={addItemToOrder} />)}
       </SimpleGrid>
-    </Box>
+    </>
   )
 }
