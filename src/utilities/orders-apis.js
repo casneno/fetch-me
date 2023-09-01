@@ -10,6 +10,10 @@ export async function createNewOrder(orderData){
   return sendRequest(`${BASE_URL}`, 'POST', orderData)
 }
 
+export async function deleteOrder(orderId){
+  return sendRequest(`${BASE_URL}/${orderId}`, 'DELETE')
+}
+
 export async function getOrder(orderId){
   return sendRequest(`${BASE_URL}/${orderId}`)
 }

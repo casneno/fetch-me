@@ -26,11 +26,14 @@ export default function MyOrdersPage({ user, orders, setOrders }) {
   }, [])
 
   /* Display only orders which I am the owner and that are not yet paid */
-  const showMyOrders = orders.filter(order=> order.owner === user._id && order.isPaid===false).map((order, idx)=><OrderCard key={idx} name={order.name} orderId={order._id}/>)
+  const showMyOrders = orders.filter(order=> order.owner === user._id && order.isPaid===false).map((order, idx)=><OrderCard key={idx} name={order.name} orderId={order._id} handleDelete={handleDelete}/>)
 
   /* Display only orders with which I am colaborating and that are not yet paid */
   const showMyColabs = orders.filter(order=> order.colaborators.some(colab=>colab.toString() === user._id && order.isPaid===false)).map((order, idx)=><OrderCard key={idx} name={order.name} orderId={order._id}/>)
 
+  async function handleDelete(orderId){
+    await ordersAPI.deleteOrder(orderId)
+  }
 
   return (
     <>

@@ -1,11 +1,11 @@
 const Order = require('../../models/order');
 const User = require('../../models/user');
-const Item = require('../../models/item');
 
 module.exports={
   getUserOrders,
   getOrder,
   createNewOrder,
+  deleteOrder,
   addColab,
   removeColab,
   addItemToOrder,
@@ -34,6 +34,17 @@ async function createNewOrder(req, res){
     console.error ('Unable to create order')
   }
 }
+
+async function deleteOrder(req, res){
+  try{
+    console.log(req.params.id)
+    await Order.findByIdAndDelete(req.params.id)
+    res.json({message: 'Order Deleted successfully'})
+  } catch (error) {
+    res.status(500).json({ message: 'Order could not be deleted' })
+  }
+}
+
 
 async function getOrder(req, res){
   try{

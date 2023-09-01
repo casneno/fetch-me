@@ -7,6 +7,8 @@ router.get('/user/:id', ordersCtrl.getUserOrders)
 
 router.post('/', ordersCtrl.createNewOrder)
 
+router.delete('/:id', ordersCtrl.deleteOrder)
+
 router.get('/:id', ordersCtrl.getOrder)
 
 router.put('/:id/addcolab', ordersCtrl.addColab)
