@@ -8,10 +8,8 @@ import * as ordersAPI from '../../utilities/orders-apis'
 export default function OrderCard({ name, orderId, handleDelete }) {
   const [showDelete, setShowDelete] = useState(false);
 
-
-
   return (
-    <Card maxH='sm' maxW='sm' _hover={{ boxShadow: 'outline' }} p={0} m={2} borderRadius={20} onMouseEnter={() => setShowDelete(true)} onMouseLeave={() => setShowDelete(false)} onClick={()=>handleDelete(orderId)}>
+    <Card maxH='sm' maxW='sm' _hover={{ boxShadow: 'outline' }} p={0} m={2} borderRadius={20} onMouseEnter={() => setShowDelete(true)} onMouseLeave={() => setShowDelete(false)} onClick={(evt)=>handleDelete(evt, orderId)}>
       {showDelete && (<Button position="absolute" top="5px" right="5px" borderRadius="50%" size="sm" colorScheme="red">
       <Icon as={DeleteIcon} />
       </Button>)}

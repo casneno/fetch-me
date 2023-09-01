@@ -31,7 +31,8 @@ export default function MyOrdersPage({ user, orders, setOrders }) {
   /* Display only orders with which I am colaborating and that are not yet paid */
   const showMyColabs = orders.filter(order=> order.colaborators.some(colab=>colab.toString() === user._id && order.isPaid===false)).map((order, idx)=><OrderCard key={idx} name={order.name} orderId={order._id}/>)
 
-  async function handleDelete(orderId){
+  async function handleDelete(evt, orderId){
+    evt.stopPropagation();
     await ordersAPI.deleteOrder(orderId)
   }
 
