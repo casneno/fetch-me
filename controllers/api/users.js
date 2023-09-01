@@ -104,9 +104,7 @@ async function removeFriend(req, res){
     /* check if friend exist or is in the user object */
     if (!friend) return res.status(404).send('Friend not found');
     if (!user.friends.includes(friend._id)) return res.status(400).send('Not friends');
-
-    // user.friends.splice(user.friends.indexOf(friend.id), 1)
-    user.friends = user.friends.filter(friendId => friendId.toString() !== friend._id.toString())
+    user.friends.splice(user.friends.indexOf(friend.id), 1)
     await user.save()
     const popUser = await User.findById(req.user._id).populate('friends')
     res.status(200).json(popUser)

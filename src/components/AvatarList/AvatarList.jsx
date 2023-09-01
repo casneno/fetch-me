@@ -3,32 +3,34 @@ import { Modal, ModalOverlay, ModalContent, ModalHeader, ModalFooter, ModalBody,
 import * as ordersAPI from '../../utilities/orders-apis'
 import { IoPersonAddSharp } from "react-icons/io5"
 import ColaboratorCard from '../ColaboratorCard/ColaboratorCard'
+import { useState} from 'react';
 
 
 export default function AvatarList({ user, friends, setFriends, otherUsers, colabs, setColabs, order }) {
+  const [refetch, setRefetch] = useState(false)
 
   const { isOpen, onOpen, onClose } = useDisclosure()
 
   const avatars = colabs.map(colab => <Avatar size="md" name={colab.name||'Unnamed User'} src={colab.icon} />)
 
-  /* ---------------- DISPLAY HANDLERS ----------- */
+  /* ---------------------------- DISPLAY FILTERS ---------------------- */
+
   const colabIds = colabs.map(colab => colab._id);
   const friendIds = friends.map(friend => friend._id);
   const filteredFriends = friends.filter(friend => !colabIds.includes(friend._id));
   const filteredOtherUsers = otherUsers.filter(otherUser => !colabIds.includes(otherUser._id) && !friendIds.includes(otherUser._id) && otherUser._id !== user._id);
-  console.log('filtered friends', filteredFriends)
+  
   const friendsList = filteredFriends.map(friend=><ColaboratorCard key={friend._id} person={friend} isFriend={false} handleAdd={()=> handleAdd(friend._id)} />)
   
   const otherUsersList = filteredOtherUsers.map(otherUser=><ColaboratorCard key={otherUser._id} person={otherUser} isFriend={false} handleAdd={()=> handleAdd(otherUser._id)} />)
 
   const colaboratorsList = colabs.map(colab => (<ColaboratorCard key={colab._id} person={colab} isFriend={true} handleRemove={()=>handleRemove(colab._id)} />));
   
-  /* ---------------------- EVENT HANDLERS ------------------- */
+  /* ---------------------------- EVENT HANDLERS --------------------------- */
 
   async function handleAdd(colabId){
     try{
       const updatedOrder = await ordersAPI.addColab(order._id, colabId)
-      console.log('neworder', updatedOrder)
       setColabs(updatedOrder.colaborators)
     } catch (err) {
       console.error(err)
@@ -36,8 +38,12 @@ export default function AvatarList({ user, friends, setFriends, otherUsers, cola
   }
 
   async function handleRemove(colabId){
-    const updatedOrder = await ordersAPI.removeColab(order._id, colabId)
-    setColabs(updatedOrder.colaborators)
+    try{
+      const updatedOrder = await ordersAPI.removeColab(order._id, colabId)
+      setColabs(updatedOrder.colaborators)
+    } catch (err) {
+      console.error(err)
+    }
   }
 
 

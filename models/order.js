@@ -56,7 +56,7 @@ orderSchema.methods.addItemToOrder = async function (itemId) {
   return order.save();
 };
 
-// Instance method to set an item's qty in the order (will add item if does not exist)
+// Instance method to set an item's qty in the order
 orderSchema.methods.setItemQtyInCart = function(itemId, newQty) {
   const orderItem = this.orderItems.find(orderItem => orderItem.id === (itemId));
   if (newQty <= 0) {
@@ -66,5 +66,10 @@ orderSchema.methods.setItemQtyInCart = function(itemId, newQty) {
   }
   return this.save();
 };
+
+orderSchema.methods.confirmIfPaid = function(isPaid) {
+  this.isPaid = true
+  return this.save()
+}
 
 module.exports = mongoose.model('Order', orderSchema);

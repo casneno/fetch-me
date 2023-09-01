@@ -56,7 +56,7 @@ async function addColab(req, res){
     res.status(200).json(popOrder)
   } catch (err) {
     console.error(err)
-    res.status(500).json({ error: 'Unable to add collaborator to order' });
+    res.status(500).json({ error: 'Unable to add colaborator to order' });
   }
 }
 /* OK - removes target coalborator from target order, returns populated order object */
@@ -65,11 +65,12 @@ async function removeColab(req, res){
     const order = await Order.findById(req.body.orderId)
     const colab = await User.findById(req.body.colabId)
     order.colaborators.splice(order.colaborators.indexOf(colab.id), 1)
-    order.save()
+    await order.save()
     const popOrder = await Order.findById(req.body.orderId).populate('colaborators')
     res.status(200).json(popOrder)
   } catch (err) {
     console.error(err)
+    res.status(500).json({ error: 'Unable to remove colaborator to order' });
   }
 }
 /* OK */
