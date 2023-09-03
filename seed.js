@@ -27,11 +27,13 @@ const Item = require('./models/item');
   await Item.deleteMany({});
   const items = await Item.create([
     {name: 'Bread', emoji: 'http://bit.ly/3szVtLH', category: categories[0], price: 0.95},
-    {name: 'Bagel', emoji: 'https://bit.ly/3R15Xhm', category: categories[0], price: 6.95},
-    {name: 'Hot Dog', emoji: '🌭', category: categories[0], price: 3.95},
-    {name: 'Crab Plate', emoji: '🦀', category: categories[1], price: 14.95},
-    {name: 'Fried Shrimp', emoji: '🍤', category: categories[1], price: 13.95},
-    {name: 'Whole Lobster', emoji: '🦞', category: categories[1], price: 25.95},
+    {name: 'Bagel', emoji: 'https://bit.ly/3R15Xhm', category: categories[0], price: 1.95},
+    {name: 'Cookies', emoji: 'https://rb.gy/4kt5w', category: categories[0], price: 0.45},
+    {name: 'Muffins', emoji: 'https://rb.gy/i02sk', category: categories[0], price: 1.05},
+    {name: 'Water', emoji: 'https://rb.gy/oqp6j', category: categories[1], price: 0.50},
+    {name: 'Coca-cola', emoji: 'https://rb.gy/4v3vv', category: categories[1], price: 2.00},
+    {name: 'Milk', emoji: 'https://rb.gy/qm27g', category: categories[1], price: 2.05},
+    {name: 'Orange Juice', emoji: 'https://shorturl.at/jrDL0', category: categories[1], price: 3.00},
     {name: 'Taco', emoji: '🌮', category: categories[2], price: 1.95},
     {name: 'Burrito', emoji: '🌯', category: categories[2], price: 4.95},
     {name: 'Pizza Slice', emoji: '🍕', category: categories[3], price: 3.95},
