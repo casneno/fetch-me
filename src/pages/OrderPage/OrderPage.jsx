@@ -34,7 +34,10 @@ export default function OrderPage({ user, setUser }) {
       try {
         const allUsers = await usersAPI.getAllUsers();
         const populatedUser = await usersAPI.getUser(user._id)
-        const filteredUsers = allUsers.filter(obj => !user.friends.some(friend => friend === obj._id))
+        const friendIds = populatedUser.friends.map(friend => friend._id);
+        const filteredUsers = allUsers.filter(
+          obj => obj._id !== user._id && !friendIds.includes(obj._id)
+      );
         setUsers(allUsers)
         setFriends(populatedUser.friends)
         setOtherUsers(filteredUsers)

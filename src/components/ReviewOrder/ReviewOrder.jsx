@@ -16,7 +16,7 @@ export default function ReviewOrder({ order, orderItems }) {
 
   return (
     <>
-      <Button isDisabled={!order.orderItems.length} onClick={onOpen}>REVIEW ORDER</Button>
+      <Button position='fixed' top='17vh' w='90vw' isDisabled={!order.orderItems.length} onClick={onOpen}>REVIEW ORDER</Button>
       <Modal closeOnOverlayClick={false} isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
         <ModalContent>

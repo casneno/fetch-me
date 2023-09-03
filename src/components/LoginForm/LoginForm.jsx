@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import * as usersService from '../../utilities/users-service';
-import { Box, VStack, Heading, Text, Input, FormControl, FormLabel, HStack, Button } from '@chakra-ui/react';
+import { Box, Flex, VStack, Heading, Text, Input, FormControl, FormLabel, HStack, Button } from '@chakra-ui/react';
+import About from '../About/About'
 
 export default function LoginForm({ setUser }) {
   const [credentials, setCredentials] = useState({
@@ -29,7 +30,7 @@ export default function LoginForm({ setUser }) {
   }
 
   return (
-    <>
+    <Flex className='master-box' direction='column' h='100vh'>
       <Box 
         w={['full','md']} 
         p={[8, 10]} 
@@ -58,7 +59,7 @@ export default function LoginForm({ setUser }) {
             </HStack>
           </VStack>
       </Box>
-
+      
 
 {/*       <div className="auth">
         <div className="form-container">
@@ -73,6 +74,6 @@ export default function LoginForm({ setUser }) {
         <p className="error-message">&nbsp;{error}</p>
       </div> */}
     
-    </>
+    </Flex>
   );
 }

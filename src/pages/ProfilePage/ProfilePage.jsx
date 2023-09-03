@@ -1,9 +1,12 @@
+import { Avatar, Box, Flex, Heading, Text, VStack, StackDivider } from "@chakra-ui/react";
 
-export default function ProfilePage({user, setUser}){
-  return(
-    <>
-    <h1>Profile Page</h1>
-    <h2>{user.name}</h2>
-    </>
-  )
+export default function ProfilePage({ user, ownedOrders, collaboratorOrders }) {
+
+
+
+  return (
+    <Flex direction="column" align="center" p={5}>
+      {/* User Info */}
+    </Flex>
+  );
 }

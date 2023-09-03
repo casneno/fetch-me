@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
-import { Box, Button, Divider, SimpleGrid, Stack} from '@chakra-ui/react'
+import { Box, Flex, Button, Divider, SimpleGrid, Stack} from '@chakra-ui/react'
 import * as itemsAPI from '../../utilities/items-apis';
 import * as ordersAPI from '../../utilities/orders-apis'
 import SearchBar from "../../components/SearchBar/SearchBar";
@@ -35,12 +35,21 @@ export default function CartSection({user, orderId, order, setOrder}){
   }
 
   return(
-    <>
-      <Divider m={2}/>
-      <SimpleGrid columns={2} spacing={2}>
-        {showOrderItems}
-      </SimpleGrid>
+    <Flex direction="column" alignItems='center'>
       <ReviewOrder order={order} orderItems={orderItems}/>
-    </>
+      <Divider m={2}/>
+      <Flex 
+            direction="row" 
+            wrap="wrap" 
+            overflowY="auto"  
+            mt="20vh" 
+            maxHeight="calc(100vh - 10vh)"
+            h="60vh"
+            w='100vw'
+            justify='center'
+        >
+        {showOrderItems}
+        </Flex>
+    </Flex>
   )
 }

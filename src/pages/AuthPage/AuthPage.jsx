@@ -2,20 +2,24 @@ import SignUpForm from "../../components/SignUpForm/SignUpForm";
 import LoginForm from "../../components/LoginForm/LoginForm";
 import About from "../../components/About/About"
 import { useState } from "react";
-import { Button, ButtonGroup, Box } from '@chakra-ui/react'
+import { Button, Flex, ButtonGroup, Box } from '@chakra-ui/react'
 
-export default function AuthPage({setUser}){
+export default function AuthPage({ setUser }) {
   const [toggleSignIn, setToggleSignIn] = useState(true)
 
-  return(
-    <Box>
+  return (
+    <Flex className='master-box' direction='column' justify='center' align='center'>
       {toggleSignIn ?
-      <LoginForm setUser={setUser}/>
-      :
-      <SignUpForm setUser={setUser}/>
+        <LoginForm setUser={setUser} />
+        :
+        <SignUpForm setUser={setUser} />
       }
-      <Button colorScheme='yellow' className="switch-sign" onClick={()=>setToggleSignIn(!toggleSignIn)}>{toggleSignIn ? 'Sign-up here' : 'Go to Log In'}</Button>
-      <About />
-    </Box>
+      <Button w='80vw' colorScheme='yellow' className="switch-sign" onClick={() => setToggleSignIn(!toggleSignIn)}>{toggleSignIn ? 'Sign-up here' : 'Go to Log In'}</Button>
+      {toggleSignIn ?
+        <About />
+        :
+        null
+      }
+    </Flex>
   )
 }

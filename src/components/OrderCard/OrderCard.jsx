@@ -19,7 +19,7 @@ export default function OrderCard({ name, orderId, isOwner, isDeleteMode, onDele
     <Card 
       w={['40vw', '25vw', '12rem']}  // Increased square card sizes
       h={['40vw', '25vw', '12rem']} 
-      _hover={{ boxShadow: 'outline' }} 
+      _hover={{ transform: "scale(1.05)", boxShadow: "2xl" }} 
       p={0} 
       m="8px" 
       borderRadius="20px"  
