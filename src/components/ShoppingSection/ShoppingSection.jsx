@@ -32,7 +32,7 @@ export default function ShoppingSection({user, orderId, order, setOrder}){
   }
   
   /* variable to display  items from the active category*/
-  const activeItems = items.filter(item => item.category.name === activeCategory)
+  const activeItems = ( activeCategory === 'All' ? items : items.filter(item => item.category.name === activeCategory))
 
   const breakpoint = useBreakpointValue({ base: 'mobile', md: 'desktop' });
 
