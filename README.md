@@ -6,9 +6,16 @@ Online shopping for groceries often feels like a lonely experience even if you a
 ## Description & Motivation
 This Fetch-Me app is the last of four projects in the General Assembly SEI Course.  The purpose of this project was for us to apply our knowledge of the full MERN stack. This app was a solo development over the course of one week.  The app was developed using the following technologies:  
 
-| ![MongoDB](https://img.shields.io/badge/MongoDB-%234ea94b.svg?style=for-the-badge&logo=mongodb&logoColor=white) | ![Express.js](https://img.shields.io/badge/express.js-%23404d59.svg?style=for-the-badge&logo=express&logoColor=%2361DAFB) | ![React](https://img.shields.io/badge/React-61DAFB.svg?style=for-the-badge&logo=React&logoColor=black) | ![NodeJS](https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white) |
-| ![Mongoose](https://img.shields.io/badge/Mongoose-880000.svg?style=for-the-badge&logo=Mongoose&logoColor=white) | ![CSS3](https://img.shields.io/badge/CSS3-1572B6.svg?style=for-the-badge&logo=CSS3&logoColor=white) | ![Chakra](https://img.shields.io/badge/chakra-%234ED1C5.svg?style=for-the-badge&logo=chakraui&logoColor=white) | ![React Router](https://img.shields.io/badge/React_Router-CA4245?style=for-the-badge&logo=react-router&logoColor=white) |
-| ![HTML5](https://img.shields.io/badge/HTML5-E34F26.svg?style=for-the-badge&logo=HTML5&logoColor=white) | ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E.svg?style=for-the-badge&logo=JavaScript&logoColor=black)
+![React](https://img.shields.io/badge/React-61DAFB.svg?style=for-the-badge&logo=React&logoColor=black)
+![MongoDB](https://img.shields.io/badge/MongoDB-%234ea94b.svg?style=for-the-badge&logo=mongodb&logoColor=white) 
+![NodeJS](https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white)
+![Express.js](https://img.shields.io/badge/express.js-%23404d59.svg?style=for-the-badge&logo=express&logoColor=%2361DAFB)
+![React Router](https://img.shields.io/badge/React_Router-CA4245?style=for-the-badge&logo=react-router&logoColor=white) |
+![Mongoose](https://img.shields.io/badge/Mongoose-880000.svg?style=for-the-badge&logo=Mongoose&logoColor=white)
+![Chakra](https://img.shields.io/badge/chakra-%234ED1C5.svg?style=for-the-badge&logo=chakraui&logoColor=white)
+![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E.svg?style=for-the-badge&logo=JavaScript&logoColor=black)
+![CSS3](https://img.shields.io/badge/CSS3-1572B6.svg?style=for-the-badge&logo=CSS3&logoColor=white)
+![HTML5](https://img.shields.io/badge/HTML5-E34F26.svg?style=for-the-badge&logo=HTML5&logoColor=white)
 
 
 ### Try it out!
@@ -17,21 +24,27 @@ Since this is a free Web-based app, anyone can use it without any requirements. 
 ## How to Navigate
 The app is currently running only it's mobile version, so in order to better visualize it, it is recommended for the user to run it on a viewport of 428x926 or smaller.
 
-Once Signed-up and Logged in, the user is able to navigate the diferent pages by means of the navbar at the bottom of the screen
+Once Signed-up and Logged in, the user is able to navigate the diferent pages by means of the navbar at the bottom of the screen.  The user can then add/remove other users from their friend list to favorite them or engage straight away in shopping by creating a new order and inviting others to colaborate.  When shopping, items that are added to the cart can be seen by toggling screens and then their quantities can be adjusted. To remove an item, you jsut need to reduce its quantity to zero.  When you are ready, proceed to your order review end, finalaly, to checkout. (currently the payment feature has not yet been implemented)
 
 ## Brief
 
-The SEI Project 1 Include the following Technical requirements:
+The SEI Project 4 Include the following Technical requirements:
 
-☐ Render a game in the browser.  
-☐ Include win/loss logic and render win/loss messages in HTML. Popup alerts using the alert() method are okay during development, but not production.  
-☐ Include separate HTML, CSS & JavaScript files.  
-☐ Use vanilla JavaScript, not jQuery.  
-☐ Have properly indented HTML, CSS & JavaScript. In addition, vertical whitespace needs to be consistent.  
-☐ No remaining unused and/or commented out code (code that will never be called) .  
-☐ Have functions and variables that are named sensibly. Remember, functions are typically named as verbs and variables (data) named as nouns.  
-☐ Be coded in a consistent manner. For example, choose between your preference for function declarations vs. function expressions.  
-☐ Be deployed online using GitHub Pages so that the rest of the world can play your game!  
+☐ A working full-stack, single-page application hosted on Heroku.
+☐ Incorporate the technologies of the MERN-stack:
+MongoDB/Mongoose
+Express
+React
+Node
+☐ Have a well-styled interactive front-end.
+☐ Communicates with the Express backend via AJAX.
+☐ Implement token-based authentication. Including the ability of a user to sign-up, log in & log out.
+☐ Implement authorization by restricting CUD data functionality to authenticated users. Also, navigation should respond to the login status of the user.
+☐ Have a well-scoped feature-set. Full-CRUD data operations are not required if one or more other features are included, for example:
+- Consume data from a third-party API.
+- Implement additional functionality if the user is an admin.
+- Implementation of a highly dynamic UI or data visualization.
+- Other, instructor approved, complexity/features.
 
 ## About
 
@@ -46,51 +59,26 @@ The game was first conceived within the Wireframe displayed below and it's displ
 
 Below is the initial Pseudocode from the project planning:
 
-* Render main screen
-* Insert player name and click Play game button
-* Render Battleship Screen
-* Set:
- * Victory condition null
-* Randomly place ships in Player grid
-* Display turn message: Player 1
-* Player clicks the opponent's grid
-* Opponents Board:
- * Hit water, change grid sprit
- * Hit ship, change grid and check if ship is sunk:
-  * Ship sunk? update the side bar
-  *Ship not sunk? do nothing
-* Are there any ships left in the opponent sidebar?
- * Yes: change turn
- * No: Display message player wins and stop game + Play again button
-* Opponent's turn:
- * Ship sunk in previous turn? randomize click, else
- * Ship hit in previous turn? click in adjacent squares from last hit, else
- * Randomize click.
-* Player's Board:
- * Hit water, change grid sprit
- * Hit ship, change grid and check if ship is sunk:
-  * Ship sunk? update the side bar
-  * Ship not sunk? do nothing
- * Are there any ships left in the player sidebar?
-  * Yes: change turn
-  * No: Display message opponent wins and stop game + Play again button
- * Reset Board State
+* Login/Signup screen with toggle button
+* Lannding page with about content
+* Add other user as favourites
+* User creates a new order and invites colaborators to join him
+* Users proceed to add items to the cart by filtering categories in item database
+* Quantities are managed inside the cart
+* Order Review panel
+* Payment with Stripes or similar
 
 *Creative Process and Brainstorming on Evernote*
 ![brainstorming on evernote](https://github.com/casneno/Battleships-ProjectOne/blob/main/images/brainstorming_battleships.png)
 
 ### Building the Code
 
-From the start I wanted the game to be scaleable, meaning that the grid size, number of ships and features could easily be change in future updates.  Also, by working with objects, my data manipulation would be as simplles as changing, adding or subtracting key-pair values for the desired effects.  For that matter I opted to work with 2D arrays and Objects.  
-My first approach was to divide the code in two parts: 
-1. The visual elements manipulation through the DOM, that responded to:
-2. The data being held within the program inside of the objects.
-  
-The first step involved setting up a basic HTML and CSS, atributing Ids and classes to some elements and outlining the borders of my containers so I got a good visual of the layout I wanted. I opted to apply flex to most of my elements for a faster, more convenient and more responsive design.  The dynamically generated elements were left out for now.
+I wanted to design an app that was scalable in funcitons and that provided the user with a easy-to-use mobile interface with minimum options at first, since the main purpose of this app is to be used on-the-go.
 
-Once I satisfied with the layout, I set-up the JavaScript file, generated the global variables that would change according to the state of the game, defined my only constant (the ship list with their properties), cached some elements with which I would later interact and added event listeners for some of these elements. Then I proceded to stubbing the functions according to what was planned in my pseudocode. I opted to separate my functions in 3 sections, according to their purpose (Modeling, Viewing or Controling), this way it would be more convenient to find them throughout the code.
+The first step in building the code was to setup my react file with react-create.  Then I proceeded to installing dependencies and setting up my backend. For styling I decided to go with Chakra UI due to its fast learning curve, built-in components and responsiveness. 
+  For backend, the project required using no-SQL MongoDB.  I used a Mongoose to model my data.  After having setup and checking the working backend-frontend interface i then proceeded to define my models, starting with my User model.  For my Items model, since I needed two slightly diferent models, I opted to reuse my schema.
 
-Once stubbed, I first elaborated the modeling functions that dynamically generated the html elements for the grids and the HUD and applied them to the board. I went back to my CSS and adjusted the elements positions, gave them borders, color and removed the borders from the static elements giving the game a basic, yet functional appearence to be tested.  Next, I built the arrays that would store each player's board data and HUD data.  Finally I wrote the render function that would update the state of the game according to the information passed on by the data arrays.
+The first element to code was the sign-up and authenticetion process.  After creating the authentication page and the sign-up and login forms, I created a send-request.js file where I coded my main fetch to use as default for my CRUDing operations.  This request is responsible for making API calls and dealing with payload and token authorizations.  The sign-up process consisted of creating a user object from the form inputs, 
 
 *Generate my HTML elemnts dynamically*
 ```sh
