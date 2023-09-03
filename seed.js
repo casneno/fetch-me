@@ -9,19 +9,25 @@ const Item = require('./models/item');
 (async function() {
   await Category.deleteMany({});
   const categories = await Category.create([
-    {name: 'Sandwiches', sortOrder: 10},
-    {name: 'Seafood', sortOrder: 20},
-    {name: 'Mexican', sortOrder: 30},
-    {name: 'Italian', sortOrder: 40},
-    {name: 'Sides', sortOrder: 50},
-    {name: 'Desserts', sortOrder: 60},
-    {name: 'Drinks', sortOrder: 70},
+    {name: 'Bakery', sortOrder: 10},
+    {name: 'Beverages', sortOrder: 20},
+    {name: 'Canned Goods', sortOrder: 30},
+    {name: 'Condiments & Spices', sortOrder: 40},
+    {name: 'Fish & Sea', sortOrder: 50},
+    {name: 'Frozen Food', sortOrder: 60},
+    {name: 'Fruits', sortOrder: 70},
+    {name: 'HealthCare', sortOrder: 80},
+    {name: 'Meat', sortOrder: 90},
+    {name: 'Pasta, Cereal and Rice', sortOrder: 100},
+    {name: 'Personal Care', sortOrder: 110},
+    {name: 'Snacks', sortOrder: 120},
+    {name: 'Vegetables', sortOrder: 130},
   ]);
 
   await Item.deleteMany({});
   const items = await Item.create([
-    {name: 'Hamburger', emoji: '🍔', category: categories[0], price: 5.95},
-    {name: 'Turkey Sandwich', emoji: '🥪', category: categories[0], price: 6.95},
+    {name: 'Bread', emoji: 'http://bit.ly/3szVtLH', category: categories[0], price: 0.95},
+    {name: 'Bagel', emoji: 'https://bit.ly/3R15Xhm', category: categories[0], price: 6.95},
     {name: 'Hot Dog', emoji: '🌭', category: categories[0], price: 3.95},
     {name: 'Crab Plate', emoji: '🦀', category: categories[1], price: 14.95},
     {name: 'Fried Shrimp', emoji: '🍤', category: categories[1], price: 13.95},

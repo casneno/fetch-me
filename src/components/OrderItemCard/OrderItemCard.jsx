@@ -4,7 +4,7 @@ import { AddIcon, MinusIcon } from '@chakra-ui/icons'; // Assuming Chakra UI v2.
 export default function OrderItemCard({ item, orderId, handleChangeQty }) {
   return (
     <Card
-      maxW='xs'
+      maxW='40vw'
       bgGradient="linear(to-br, gray.100, gray.200)"
       borderRadius="md"
       boxShadow="xl"
@@ -12,22 +12,19 @@ export default function OrderItemCard({ item, orderId, handleChangeQty }) {
       transition="transform 0.2s, box-shadow 0.2s"
       _hover={{ transform: "scale(1.05)", boxShadow: "2xl" }}
       zIndex={0}
-      h="250px" // Adjusted height
+      h="230px" // Adjusted height
       m={2}
     >
-      {item.item.emoji && (
-        <Box m={1}>
-          <Image
-            src={item.item.emoji}
-            alt={item.item.name}
-            objectFit="cover"
-            w="100%"
-            h="100px"
-          />
-        </Box>
-      )}
+      <Image 
+        src={item.item.emoji}
+        alt={item.item.name}
+        objectFit="cover"
+        w="100%"
+        h="90px"
+        mx="auto"
+      />
         <CardBody>
-          <Stack spacing={2}>
+          <Stack spacing={3}>
             <Center>
               <Heading size='sm'>
                 {item.item.name}
@@ -58,13 +55,13 @@ export default function OrderItemCard({ item, orderId, handleChangeQty }) {
 
       <Divider />
 
-      <Flex justify="center" align="center" height="25%"> {/* Center the CardFooter content */}
         <CardFooter>
+      <Flex justify="center" align="center" height="25%"> 
           <Text color='blue.600' fontSize='xl'>
             Total: ${item.extPrice.toFixed(2)}
           </Text>
-        </CardFooter>
       </Flex>
+        </CardFooter>
     </Card>
   );
 }
