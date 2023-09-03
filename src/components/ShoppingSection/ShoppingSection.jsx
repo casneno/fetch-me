@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
-import { Box, Button, Divider, SimpleGrid, Stack } from '@chakra-ui/react'
+import { Box, Button, Flex, Divider, Container, SimpleGrid, Stack, useBreakpointValue } from '@chakra-ui/react'
 import * as itemsAPI from '../../utilities/items-apis';
 import * as ordersAPI from '../../utilities/orders-apis'
 import SearchBar from "../../components/SearchBar/SearchBar";
@@ -34,15 +34,40 @@ export default function ShoppingSection({user, orderId, order, setOrder}){
   /* variable to display  items from the active category*/
   const activeItems = items.filter(item => item.category.name === activeCategory)
 
-  return(
-    <>
-      <Stack>
-        <CategoryCard categories={categoriesRef.current} activeCategory={activeCategory} setActiveCategory={setActiveCategory}/>
-      </Stack>
-      <Divider />
-      <SimpleGrid columns={[3,4]} spacing={2} overflowY='auto' maxHeight="calc(100vh - 500px)">
-      {activeItems.map((item,idx)=><ItemCard key={idx} item={item} orderId={orderId} addItemToOrder={addItemToOrder} />)}
-      </SimpleGrid>
-    </>
-  )
+  const breakpoint = useBreakpointValue({ base: 'mobile', md: 'desktop' });
+
+  return (
+    <Flex direction="column" alignItems="center" spacing={4} w="100%">
+        
+        <CategoryCard 
+            position="fixed"
+            top="0"
+            zIndex="10"
+
+            categories={categoriesRef.current} 
+            activeCategory={activeCategory} 
+            setActiveCategory={setActiveCategory}
+        />
+
+        <Divider borderColor="primary.500" my={4} />
+
+        <Flex 
+            direction="row" 
+            wrap="wrap" 
+            overflowY="auto"  
+            mt="25vh"  // this is the key line
+            maxHeight="calc(100vh - 40vh)"
+            w='100vw'
+            justify='center'
+        >
+            {activeItems.map((item, idx) => 
+                <ItemCard key={idx} item={item} orderId={orderId} addItemToOrder={addItemToOrder} />
+            )}
+        </Flex>
+    </Flex>
+);
+
+
+
+
 }

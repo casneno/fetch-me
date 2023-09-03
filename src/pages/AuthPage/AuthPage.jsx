@@ -4,8 +4,6 @@ import About from "../../components/About/About"
 import { useState } from "react";
 import { Button, ButtonGroup, Box } from '@chakra-ui/react'
 
-import './AuthPage.css';
-
 export default function AuthPage({setUser}){
   const [toggleSignIn, setToggleSignIn] = useState(true)
 

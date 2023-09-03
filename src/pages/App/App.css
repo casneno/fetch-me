@@ -3,3 +3,7 @@
   
 }
 
+.master-box{
+  overflow-y: scroll;
+  align-items: center;
+}

@@ -1,12 +1,11 @@
-import { Avatar, Box, Button, ButtonGroup, Input, Text } from '@chakra-ui/react'
-import { Modal, ModalOverlay, ModalContent, ModalHeader, ModalFooter, ModalBody, ModalCloseButton, useDisclosure, FormControl, FormLabel } from '@chakra-ui/react'
+import { Avatar, AvatarGroup, Box, Button, ButtonGroup, Input, Text, Modal, ModalOverlay, ModalContent, ModalHeader, ModalFooter, ModalBody, ModalCloseButton, useDisclosure, FormControl, FormLabel } from '@chakra-ui/react'
 import * as ordersAPI from '../../utilities/orders-apis'
 import { IoPersonAddSharp } from "react-icons/io5"
 import ColaboratorCard from '../ColaboratorCard/ColaboratorCard'
 import { useState} from 'react';
 
 
-export default function AvatarList({ user, friends, setFriends, otherUsers, colabs, setColabs, order }) {
+export default function AvatarList({ user, friends, setFriends, otherUsers, setOtherUsers, colabs, setColabs, order }) {
   const [refetch, setRefetch] = useState(false)
 
   const { isOpen, onOpen, onClose } = useDisclosure()
@@ -28,32 +27,34 @@ export default function AvatarList({ user, friends, setFriends, otherUsers, cola
   
   /* ---------------------------- EVENT HANDLERS --------------------------- */
 
-  async function handleAdd(colabId){
-    try{
-      const updatedOrder = await ordersAPI.addColab(order._id, colabId)
-      setColabs(updatedOrder.colaborators)
+  async function handleAdd(colabId) {
+    try {
+      const updatedOrder = await ordersAPI.addColab(order._id, colabId);
+      setColabs(updatedOrder.colaborators);
     } catch (err) {
-      console.error(err)
+      console.error(err);
     }
   }
-
-  async function handleRemove(colabId){
-    try{
-      const updatedOrder = await ordersAPI.removeColab(order._id, colabId)
-      setColabs(updatedOrder.colaborators)
+  
+  async function handleRemove(colabId) {
+    try {
+      const updatedOrder = await ordersAPI.removeColab(order._id, colabId);
+      setColabs(updatedOrder.colaborators);
     } catch (err) {
-      console.error(err)
+      console.error(err);
     }
   }
 
 
   return (
-    <Box position="sticky" top={0} display="flex" alignItems="center" justifyContent="space-between" h={10} mt={2} p={8} pr={3} border='1px' borderColor='gray.200' borderRadius="5px" >
+    <Box position="fixed" w={['90vw', '500px']} top={1} display="flex" alignItems="center" justifyContent="space-between" h={10} mt={2} p={8} pr={3} pl={3} border='1px' borderColor='gray.200' borderRadius="5px" zIndex={2} bg='white'>
       {colabs.length > 0
       ?
-      <Box>
+      <Box w='50vw%'>
+        <AvatarGroup max={3}>
         <Avatar size="md" name={order.owner.name} src={order.owner.icon} />
         {avatars}
+        </AvatarGroup>
       </Box>
       :
       <strong>No orders to display</strong>

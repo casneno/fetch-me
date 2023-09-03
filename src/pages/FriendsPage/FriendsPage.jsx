@@ -2,7 +2,7 @@ import ColaboratorCard from '../../components/ColaboratorCard/ColaboratorCard'
 import SearchBar from '../../components/SearchBar/SearchBar'
 import { useState, useEffect } from 'react';
 import * as usersAPI from '../../utilities/users-apis'
-import { Avatar, Box, Button, ButtonGroup, Container, Divider, Flex, SimpleGrid } from '@chakra-ui/react'
+import { Avatar, Box, Button, ButtonGroup, Container, Divider, Flex, SimpleGrid, Heading, Text } from '@chakra-ui/react'
 import { IoPersonAddSharp } from "react-icons/io5"
 
 export default function FriendsPage({ user, setUser }) {
@@ -80,21 +80,70 @@ export default function FriendsPage({ user, setUser }) {
   }
 
   return (
-    <>
-    <Flex direction="column" align="center" justify="center" width="90vw" p={5}>
-      <h1>Friends Page</h1>
-      <SearchBar setSearch={setSearch} />
-      <Divider my={4} />
-      <Box m={1}>My Friends</Box>
-      <SimpleGrid columns={[1, 2, 3]} spacing={1} width="100%">
-        {friendsList}
-      </SimpleGrid>
-      <Divider my={4} />
-      <Box m={2}>Other Users</Box>
-      <SimpleGrid columns={[1, 2, 3]} spacing={1} width="100%">
-        {strangersList}
-      </SimpleGrid>
-    </Flex>
-  </>
-  )
+  <Flex className='master-box'
+    direction="column"
+    align="center"
+    justify="start" // changed from 'center' to 'start' to start content from the top
+    p={5}
+    bg="white" 
+    top={0}
+    h="91vh"
+      // To allow scrolling if content exceeds viewport height
+  >
+    <SearchBar 
+      setSearch={setSearch} 
+      position="sticky" 
+      top="0" 
+      zIndex="1" 
+      bg="white" // To ensure the background is solid while scrolling.
+      mb={5}
+    />
+
+    <Heading
+      as="h1"
+      size="xl"
+      mb={5}
+      color="primary.500"
+      fontFamily="'Nunito', sans-serif"
+      fontWeight="bold"
+    >
+      Friends Page
+    </Heading>
+
+    <Divider my={4} color="primary.500" />
+
+    <Text
+      my={2}
+      fontSize="lg"
+      color="primary.500"
+      fontFamily="'Nunito', sans-serif"
+      fontWeight="bold"
+    >
+      My Friends
+    </Text>
+
+    <SimpleGrid columns={{ base: 1, md: 2, lg: 3 }} spacing={4} width="100%">
+      {friendsList}
+    </SimpleGrid>
+
+    <Divider my={4} color="primary.500" />
+
+    <Text
+      my={2}
+      fontSize="lg"
+      color="primary.500"
+      fontFamily="'Nunito', sans-serif"
+      fontWeight="bold"
+    >
+      Other Users
+    </Text>
+
+    <SimpleGrid columns={{ base: 1, md: 2, lg: 3 }} spacing={4} width="100%">
+      {strangersList}
+    </SimpleGrid>
+  </Flex>
+);
+
+  
+  
 }
