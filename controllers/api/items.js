@@ -6,11 +6,7 @@ module.exports = {
 
 async function getAllItems(req, res) {
   const items = await Item.find({}).sort('name').populate('category').exec();
+  console.log(items)
   items.sort((a, b) => a.category.sortOrder - b.category.sortOrder);
   res.json(items);
 }
-
-// async function show(req, res) {
-//   const item = await Item.findById(req.params.id);
-//   res.json(item);
-// }
