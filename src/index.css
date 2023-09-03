@@ -16,7 +16,12 @@
 body, html {
   margin: 0;
   padding: 0;
-  overflow: hidden;
+  /* overflow: hidden; */
+}
+
+.master-box{
+  overflow-y: scroll;
+  align-items: center;
 }
 
 /* code {

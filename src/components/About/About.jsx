@@ -8,7 +8,7 @@ function AboutPage() {
     const imageSize = useBreakpointValue({ base: "300px", md: "300px", lg: "250px" });
 
     return (
-        <Container maxW="container.xl" py={10} className='master-box'>
+        <Container maxW="container.xl" py={10}>
             <Center marginBottom={10}>
                 <Heading as="h1" size="2xl" textAlign="center">
                     About Our Groceries App

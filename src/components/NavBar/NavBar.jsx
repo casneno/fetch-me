@@ -39,7 +39,7 @@ export default function NavBar({ user, setUser }) {
   color="primary.900"
   zIndex={10}
 ><Flex justifyContent="space-between" w="100%" alignItems="center">
-      <Link to="/home" style={{ flexGrow: 1, margin: 0, padding: 0 }}>
+      <Link to="/" style={{ flexGrow: 1, margin: 0, padding: 0 }}>
         <BottomNavigationItem _hover={{ bgColor: "primary.200" }} p={2} m={0}w='100%'>
           <BottomNavigationIcon boxSize={6} as={FaHome} m={0}/>
           <BottomNavigationLabel fontSize="sm" mt={0}>Home</BottomNavigationLabel>

@@ -19,37 +19,40 @@ export default function OrderPage({ user, setUser }) {
   const orderId = useParams().id
 
   useEffect(() => {
-
     async function getOrder(orderId) {
-      try {
-        const getOrder = await ordersAPI.getOrder(orderId)
-        setOrder(getOrder)
-        setColabs(getOrder.colaborators)
-      } catch (err) {
-        console.error(err)
-      }
-    }
-
-    async function setAllUserStates() {
-      try {
-        const allUsers = await usersAPI.getAllUsers();
-        const populatedUser = await usersAPI.getUser(user._id)
-        const friendIds = populatedUser.friends.map(friend => friend._id);
-        const filteredUsers = allUsers.filter(
-          obj => obj._id !== user._id && !friendIds.includes(obj._id)
-      );
-        setUsers(allUsers)
-        setFriends(populatedUser.friends)
-        setOtherUsers(filteredUsers)
-      } catch (err) {
-        console.error(err)
-      }
+        try {
+            const fetchedOrder = await ordersAPI.getOrder(orderId)
+            setOrder(fetchedOrder)
+            setColabs(fetchedOrder.colaborators)
+        } catch (err) {
+            console.error(err)
+        }
     }
 
     getOrder(orderId)
-    setAllUserStates()
 
-  }, [colabs])
+}, [orderId]);
+
+useEffect(() => {
+  async function setAllUserStates() {
+      try {
+          const allUsers = await usersAPI.getAllUsers();
+          const populatedUser = await usersAPI.getUser(user._id)
+          const friendIds = populatedUser.friends.map(friend => friend._id);
+          const filteredUsers = allUsers.filter(
+              obj => obj._id !== user._id && !friendIds.includes(obj._id)
+          );
+          setUsers(allUsers)
+          setFriends(populatedUser.friends)
+          setOtherUsers(filteredUsers)
+      } catch (err) {
+          console.error(err)
+      }
+  }
+
+  setAllUserStates()
+
+}, [user._id]);
 
   const switchComponentView = () => {
     setSwitchView(!switchView)
@@ -88,11 +91,16 @@ export default function OrderPage({ user, setUser }) {
                   position="fixed"
                   top="11vh"
                   onClick={switchComponentView}
-                  colorScheme="primary.500"
+                  bg="secondary.300"
                   mb={4}
                   w="90vw"
               >
-                  Change Section
+                  {switchView
+                  ?
+                  'My Cart'
+                  :
+                  'Back to Store'}
+
               </Button>
           )}
   

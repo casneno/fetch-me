@@ -60,7 +60,6 @@ const breakpoints = {
     Button: {
       baseStyle: {
         fontWeight: "bold",
-        textTransform: "uppercase",
       },
       variants: {
         solid: {

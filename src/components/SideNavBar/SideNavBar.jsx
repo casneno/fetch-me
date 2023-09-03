@@ -9,7 +9,7 @@ export default function SideNavBar({ handleLogout }) {
   return (
     <Box position="fixed" left={0} top={0} bottom={0} w="180px" borderRight="1px solid gray" py={5} bg="gray.50">
       <VStack spacing={4} align="start" ml={5}>
-        <Link to="/home">
+        <Link to="/">
           <Icon as={FaHome} boxSize={6} />
           Home
         </Link>

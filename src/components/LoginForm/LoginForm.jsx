@@ -30,7 +30,7 @@ export default function LoginForm({ setUser }) {
   }
 
   return (
-    <Flex className='master-box' direction='column' h='100vh'>
+    <Flex direction='column' h='55vh'>
       <Box 
         w={['full','md']} 
         p={[8, 10]} 

@@ -1,7 +1,7 @@
 import { getUser } from '../../utilities/users-service'
-import { Link } from 'react-router-dom';
 import './App.css';
 import { useState, useEffect } from "react"
+import About from "../../components/About/About"
 import AuthPage from "../AuthPage/AuthPage"
 import HomePage from "../HomePage/HomePage"
 import MyOrdersPage from "../MyOrdersPage/MyOrdersPage"
@@ -31,11 +31,10 @@ export default function App() {
     <>
       {user ?
         <Box position="relative" w='100%' minHeight="100vh">
-          {/* <Stack direction={['column', 'row']} spacing='6px'> */}
-
           <Box ml={isMobile ? "0" : "180px"} mb={isMobile ? "4em" : "0"}>
             <Routes>
-              <Route path='/home' element={<HomePage />} />
+                {/* <HomePage/> */}
+              <Route exact path='/' element={<HomePage />} />
               <Route exact path='/orders' element={<MyOrdersPage user={user} orders={orders} setOrders={setOrders}/>} />
               <Route path='/profile' element={<ProfilePage user={user} setUser={setUser}/>} />
               <Route path='/friends' element={<FriendsPage user={user} setUser={setUser}/>} />

@@ -17,7 +17,7 @@ export default function CategoryCard({ categories, activeCategory, setActiveCate
             <Button 
                 key={category} 
                 onClick={() => setActiveCategory(category)} 
-                bg='secondary.400' 
+                bg='accent.300' 
                 mx={0.5} 
                 my={0.5} 
                 p={2} 
