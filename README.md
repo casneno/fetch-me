@@ -24,9 +24,9 @@ Since this is a free Web-based app, anyone can use it without any requirements. 
 ## How to Navigate
 The app is currently running only it's mobile version, so in order to better visualize it, it is recommended for the user to run it on a viewport of 428x926 or smaller.
 
-| Landing Page | [Landing Page](https://github.com/casneno/fetch-me/blob/main/src/images/screenshots/screenshot_landing_page.png)
+| Landing Page | ![Landing Page](https://github.com/casneno/fetch-me/blob/main/src/images/screenshots/screenshot_landing_page.png)
 
-| Shopping Page | [Shopping Page](https://github.com/casneno/fetch-me/blob/main/src/images/screenshots/Screenshot_shopping.png)
+| Shopping Page | ![Shopping Page](https://github.com/casneno/fetch-me/blob/main/src/images/screenshots/Screenshot_shopping.png)
 
 Once Signed-up and Logged in, the user is able to navigate the diferent pages by means of the navbar at the bottom of the screen.  The user can then add/remove other users from their friend list to favorite them or engage straight away in shopping by creating a new order and inviting others to colaborate.  When shopping, items that are added to the cart can be seen by toggling screens and then their quantities can be adjusted. To remove an item, you jsut need to reduce its quantity to zero.  When you are ready, proceed to your order review end, finalaly, to checkout. (currently the payment feature has not yet been implemented)
 
@@ -55,13 +55,10 @@ Node
 The app was first conceived within the Wireframe displayed below and it's display and functionalities were gradually improved as the development progressed.  The steps were organized acording to a Pseudocode (see below) and the development stages were checked and added/removed using Trello.
 
 
-| Wireframe | [Wireframe](https://github.com/casneno/fetch-me/blob/main/src/images/screenshots/Screenshot_Wireframe.png)
+| Wireframe | ![Wireframe](https://github.com/casneno/fetch-me/blob/main/src/images/screenshots/Screenshot_Wireframe.png)
 
 
 The Trello Board served as a tool for the scrum framework, where MVP and Icebox features were presented and worked on as the project progressed.  It served as a starting point for all of the work that was done here.  Below, images of the Trello Board and the ERD.
-
-| ERD | [ERD](https://github.com/casneno/fetch-me/blob/main/src/images/screenshots/Project%204%20-%20ERD.jpeg)
-
 
 
 ### Pseudocode
@@ -77,7 +74,7 @@ Below is the initial Pseudocode from the project planning:
 * Order Review panel
 * Payment with Stripes or similar
 
-*ERD*
+| ERD | ![ERD](https://github.com/casneno/fetch-me/blob/main/src/images/screenshots/Project%204%20-%20ERD.jpeg)
 
 
 ### Building the Code
