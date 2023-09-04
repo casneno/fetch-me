@@ -203,6 +203,7 @@ One of the biggest challenges I had was with CSS and page responsiveness, since 
 ### Bugs & Known Issues
 
 * The MVP version work only in screen sizes below 428xp, since it was developed for mobile.
+* Avatar is not displaying some images. Known community issue.
 
 ### Future Improvements
 
