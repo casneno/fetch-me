@@ -20,9 +20,9 @@ export default function SearchBar({setSearch}){
           p={0}
           border="none"
         >
-          <Button size="sm" borderLeftRadius={0} borderRightRadius={3.3} border="1px solid #949494">
+          {/* <Button size="sm" borderLeftRadius={0} borderRightRadius={3.3} border="1px solid #949494">
             Search
-          </Button>
+          </Button> */}
         </InputRightAddon>
       </InputGroup>
     </Box>

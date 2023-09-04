@@ -14,12 +14,12 @@ export default function CategoryCard({ categories, activeCategory, setActiveCate
 
     >
       <Menu>
-        {/* Trigger */}
         <MenuButton
           as={Button}
           bg='accent.300'
           p={2}
-          fontSize={{ base: 'sm', md: 'sm' }}
+          fontSize='md'
+          fontFamily="'Kalam', sans-serif"
           borderRadius='md'
           w={{ base: 'auto', md: 'auto' }}
           h={{ base: '2.5rem', md: 'auto' }}

@@ -33,15 +33,6 @@ orderSchema.virtual('orderTotal').get(function(){
   return this.orderItems.reduce((total, item)=> total + item.extPrice , 0)
 });
 
-orderSchema.virtual('orderQty').get(function(){
-  return this.orderItems.reduce((total, item)=> total + item.qty , 0)
-});
-
-orderSchema.virtual('orderId').get(function(){
-  return this.id.slice(-6).toUpperCase();
-});
-
-
 // Instance method for adding an item to a order (unpaid order)
 orderSchema.methods.addItemToOrder = async function (itemId) {
   const order = this;
@@ -67,9 +58,11 @@ orderSchema.methods.setItemQtyInCart = function(itemId, newQty) {
   return this.save();
 };
 
+module.exports = mongoose.model('Order', orderSchema);
+
+//Future impementation:
 orderSchema.methods.confirmIfPaid = function(isPaid) {
   this.isPaid = true
   return this.save()
 }
 
-module.exports = mongoose.model('Order', orderSchema);

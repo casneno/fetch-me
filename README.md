@@ -55,7 +55,7 @@ Node
 The app was first conceived within the Wireframe displayed below and it's display and functionalities were gradually improved as the development progressed.  The steps were organized acording to a Pseudocode (see below) and the development stages were checked and added/removed using Trello.
 
 
-| Battle Screen | ![Battle Screen](https://github.com/casneno/Battleships-ProjectOne/blob/main/images/wireframe_battleships.png) |
+| Wireframe |
 
 
 The Trello Board served as a tool for the scrum framework, where MVP and Icebox features were presented and worked on as the project progressed.  It served as a starting point for all of the work that was done here.  Below, images of the Trello Board and the ERD.
@@ -75,72 +75,75 @@ Below is the initial Pseudocode from the project planning:
 * Order Review panel
 * Payment with Stripes or similar
 
-*Creative Process and Brainstorming on Evernote*
-![brainstorming on evernote](https://github.com/casneno/Battleships-ProjectOne/blob/main/images/brainstorming_battleships.png)
+*ERD*
+
 
 ### Building the Code
 
-I wanted to design an app that was scalable in funcitons and that provided the user with a easy-to-use mobile interface with minimum options at first, since the main purpose of this app is to be used on-the-go.
+I wanted to design an app that was scalable in functionality and that provided the user with a easy-to-use mobile interface, and intuitive navigation, since the main purpose of this app is to be used on-the-go.
 
 The first step in building the code was to setup my react file with react-create.  Then I proceeded to installing dependencies and setting up my backend. For styling I decided to go with Chakra UI due to its fast learning curve, built-in components and responsiveness. 
   For backend, the project required using no-SQL MongoDB.  I used a Mongoose to model my data.  After having setup and checking the working backend-frontend interface i then proceeded to define my models, starting with my User model.  For my Items model, since I needed two slightly diferent models, I opted to reuse my schema.
 
-The first element to code was the sign-up and authenticetion process.  After creating the authentication page and the sign-up and login forms, I created a send-request.js file where I coded my main fetch to use as default for my CRUDing operations.  This request is responsible for making API calls and dealing with payload and token authorizations.  The sign-up process consisted of creating a user object from the form inputs, 
+My approach was to make a 'skeleton' of mthe entire app's Pages and Components, making note of which component belonged to which page and which components were reusable.  ONce I was happy with the skeleton, coding started...
 
-*Generate my HTML elemnts dynamically*
-```sh
-function createBoardDisplay(board, rows, columns, hud) {
-    for(let row = 0; row < rows; row++) {
-        const elRow = document.createElement('div');
-        elRow.className = 'row';
-        for(let column = 0; column < columns; column++) {
-            const elColumn = document.createElement('div');
-            elColumn.className = 'cell';
-            if(board === playerBoard) {
-                elColumn.setAttribute('id', `p${row}${column}`)
-            } else {
-                elColumn.setAttribute('id', `a${row}${column}`)
-            }
-            elRow.appendChild(elColumn);
-        }
-        board.appendChild(elRow);
-    }
-    for (let i=0; i < SHIPLIST.length; i++) {
-        const ship = document.createElement('div');
-        if (hud === playerHud) {
-            ship.setAttribute('id', `p${SHIPLIST[i].name}`);
-            ship.className = SHIPLIST[i].class;
-            ship.className = 'shipIcon';
-        } else {
-            ship.setAttribute('id', `a${SHIPLIST[i].name}`);
-            ship.className = SHIPLIST[i].class;
-            ship.className = 'shipIcon';
-        }
-        ship.className = SHIPLIST[i].class;
-        hud.appendChild(ship);
-    }
-}
-```
-Once my display and data storage mechanisms were in place I began developing the control functions, which are responsible for manipulating the data within the arrays.  Such functions include the handlePlayer and handleAi, which takes an event (human) or logic input (computer) and manipulates the data in the board and HUD arrays. Once the data was manipulated, the functions would check for a winning condition, change turns and call the render function, updating the visual display and changing turns.  If winning conditions were met, the game deters any further action from being taken, display a win message and allow the user to play again, wiping the entire data and generating a new one.
+The first element to be coded was the sign-up and authentication process.  After creating the authentication page and the sign-up and login forms, I created a send-request.js file where my default 'fetch' functionton from CRUD operations was coded: this helped keep my code DRY.  This request was responsible for making API calls and dealing with payload and token authorizations.  The sign-up process consisted of creating a user object from the form inputs, 
 
-*Check if ships can be placed*
+*useEffect, Filters and Dependencies used to control data in the Orders Page*
 ```sh
-function checkPlacement(board, rowIdx, colIdx, ship, direction) {
-    let length = ship.size
-    if (direction === 0) {
-        if (colIdx+length > columns) return false;
-        for (let i=0; i<length; i++) {
-            if(board[rowIdx][colIdx+i].id !== 'w') return false;
-        }
-    } else {
-        if (rowIdx+length > rows) return false;
-        for (let i=0; i<length; i++) {
-            if(board[rowIdx+i][colIdx].id !== 'w') return false;
+  const [switchView, setSwitchView] = useState(true);
+  const [order, setOrder] = useState([])
+  const [users, setUsers] = useState([])
+  const [friends, setFriends] = useState([])
+  const [otherUsers, setOtherUsers] = useState([])
+  const [colabs, setColabs] = useState([])
+  const orderId = useParams().id
+
+  useEffect(() => {
+    async function getOrder(orderId) {
+        try {
+            const fetchedOrder = await ordersAPI.getOrder(orderId)
+            setOrder(fetchedOrder)
+            setColabs(fetchedOrder.colaborators)
+        } catch (err) {
+            console.error(err)
         }
     }
-    return true;
-}
+
+    getOrder(orderId)
+
+}, [orderId]);
+
+useEffect(() => {
+  async function setAllUserStates() {
+      try {
+          const allUsers = await usersAPI.getAllUsers();
+          const populatedUser = await usersAPI.getUser(user._id)
+          const friendIds = populatedUser.friends.map(friend => friend._id);
+          const filteredUsers = allUsers.filter(
+              obj => obj._id !== user._id && !friendIds.includes(obj._id)
+          );
+          setUsers(allUsers)
+          setFriends(populatedUser.friends)
+          setOtherUsers(filteredUsers)
+      } catch (err) {
+          console.error(err)
+      }
+  }
+
+  setAllUserStates()
+
+}, [user._id]);
 ```
+
+Once I had a working authentication and login, I proceeded to working on the other pages. The order didn't really matter, since one page didn't rely on the other.  I chose to start with the friend's page in order to experiment with Chakra UI elements, since it was my first time using it.  Also, I enjoyed leveraging the power of React's state manipulation to create the search feature.  Once I was happy with the first layout and functionality results and went on to code the main functionalities...
+
+*Search Filter*
+```sh
+
+```
+
+The Order Menu consisted of allowing the user to pick between his own orders or that in which he was a colaborator, which was easily done by having an order model with owner and colaborator fields.  Once an order was picked, the new page would dispaly several components, some of which remained on sreen and some others that eould toggle depending on state variables, such as Shopping and Cart views.
 
 *Handle the Player's Move*
 ```sh
@@ -176,6 +179,10 @@ function handlePlayer(evt) {
     } return;
 }
 ```
+Coding the add/remove colaborator fucntionality, one of the diferentials in the app, was very simialr to coding the add/remove  friends, except for the added logic of having a third state involved ('colab').  Toggling between pages was as simple as querying a true/false 'switch' state and most of the Item Display card was reused in the Order Item card (once it is in the cart).
+
+Finally, the logic to perform adding and subtracting quantities in the cart was done through the use of methods defined in the order model.  This  
+
 
 ### Challenges
 

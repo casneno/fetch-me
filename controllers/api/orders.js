@@ -45,7 +45,6 @@ async function deleteOrder(req, res){
   }
 }
 
-
 async function getOrder(req, res){
   try{
     const order = await Order.findById(req.params.id).populate('colaborators')
@@ -54,7 +53,7 @@ async function getOrder(req, res){
     console.error ('')
   }
 }
-/* OK - adds target colaborator to target order, returns populated order object */
+
 async function addColab(req, res){
   try{
     const colab = await User.findById(req.body.colabId)
@@ -70,7 +69,7 @@ async function addColab(req, res){
     res.status(500).json({ error: 'Unable to add colaborator to order' });
   }
 }
-/* OK - removes target coalborator from target order, returns populated order object */
+
 async function removeColab(req, res){
   try{
     const order = await Order.findById(req.body.orderId)
@@ -84,7 +83,7 @@ async function removeColab(req, res){
     res.status(500).json({ error: 'Unable to remove colaborator to order' });
   }
 }
-/* OK */
+
 async function addItemToOrder(req, res){
   try{
     const order = await Order.findById(req.body.orderId)
@@ -94,7 +93,7 @@ async function addItemToOrder(req, res){
     console.error ('Could not add item to order')
   }
 }
-/* OK */
+
 async function setItemQuantity(req, res) {
   const order = await Order.findById(req.body.orderId);
   await order.setItemQtyInCart(req.body.itemId, req.body.newQty)

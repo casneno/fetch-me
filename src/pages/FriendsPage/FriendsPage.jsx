@@ -69,7 +69,7 @@ export default function FriendsPage({ user, setUser }) {
     stranger.name.toLowerCase().includes(search.toLowerCase())
   );
 
-  let strangersList = <strong>Sorry, but there are no users at the moment</strong>
+  let strangersList = <strong >Sorry, but there are no users at the moment</strong>
 
   if (searchStrangers.length > 0) {
     strangersList = searchStrangers.map(stranger => (
@@ -83,19 +83,19 @@ export default function FriendsPage({ user, setUser }) {
   <Flex className='master-box'
     direction="column"
     align="center"
-    justify="start" // changed from 'center' to 'start' to start content from the top
+    justify="start" 
     p={5}
     bg="white" 
     top={0}
     h="91vh"
-      // To allow scrolling if content exceeds viewport height
+
   >
     <SearchBar 
       setSearch={setSearch} 
       position="sticky" 
       top="0" 
       zIndex="1" 
-      bg="white" // To ensure the background is solid while scrolling.
+      bg="white"
       mb={5}
     />
 
@@ -104,10 +104,12 @@ export default function FriendsPage({ user, setUser }) {
       size="xl"
       mb={5}
       color="primary.500"
-      fontFamily="'Nunito', sans-serif"
+      fontFamily="'Kalam', sans-serif"
       fontWeight="bold"
     >
-      Friends Page
+
+      Friends
+
     </Heading>
 
     <Divider my={4} color="primary.500" />
@@ -116,7 +118,7 @@ export default function FriendsPage({ user, setUser }) {
       my={2}
       fontSize="lg"
       color="primary.500"
-      fontFamily="'Nunito', sans-serif"
+      fontFamily="'Kalam', sans-serif"
       fontWeight="bold"
     >
       My Friends
@@ -132,7 +134,7 @@ export default function FriendsPage({ user, setUser }) {
       my={2}
       fontSize="lg"
       color="primary.500"
-      fontFamily="'Nunito', sans-serif"
+      fontFamily="'Kalam', sans-serif"
       fontWeight="bold"
     >
       Other Users

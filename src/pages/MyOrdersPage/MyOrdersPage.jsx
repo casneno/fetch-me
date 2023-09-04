@@ -63,13 +63,11 @@ export default function MyOrdersPage({ user, orders, setOrders }) {
             size="lg"
             mb={4}
             color="primary.500"
-            fontFamily="'Nunito', sans-serif"
+            fontFamily="'Kalam', sans-serif"
             fontWeight="bold"
           >
             My Orders
           </Heading>
-
-          <Divider my={4} borderColor="primary.500" />
 
           <SimpleGrid columns={{ base: 2, md: 3, lg: 4 }} spacing={4} maxW="100%">
             {showMyOrders}
@@ -85,7 +83,7 @@ export default function MyOrdersPage({ user, orders, setOrders }) {
             size="lg"
             mb={4}
             color="primary.500"
-            fontFamily="'Nunito', sans-serif"
+            fontFamily="'Kalam', sans-serif"
             fontWeight="bold"
           >
             My Collaborations

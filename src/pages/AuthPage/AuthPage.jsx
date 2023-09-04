@@ -10,13 +10,13 @@ export default function AuthPage({ setUser }) {
   const isMobile = useBreakpointValue({ base: true, sm: false, md: false, lg: false });
 
   return (
-    <Flex ml={isMobile ? "0" : "180px"} pb={isMobile ? "4em" : "0"} direction='column' justify='center' align='center'>
+    <Flex ml={isMobile ? "0" : "20px"} pb={isMobile ? "4em" : "0"} direction='column' justify='center' align='center'>
       {toggleSignIn ?
         <LoginForm setUser={setUser} />
         :
         <SignUpForm setUser={setUser} />
       }
-      <Button w='80vw' color='black' bg='accent.500' className="switch-sign" onClick={() => setToggleSignIn(!toggleSignIn)}>{toggleSignIn ? 'Sign-up here' : 'Go to Log In'}</Button>
+      <Button w='65vw' color='white' bg='accent.300' onClick={() => setToggleSignIn(!toggleSignIn)}>{toggleSignIn ? 'Sign-up here' : 'Go to Log In'}</Button>
       {toggleSignIn ?
         <About />
         :

@@ -57,7 +57,9 @@ export default function AvatarList({ user, friends, setFriends, otherUsers, setO
         </AvatarGroup>
       </Box>
       :
-      <strong>No orders to display</strong>
+      <Text fontFamily="'Kalam', sans-serif">
+        <strong>No colaborators assigned...</strong>
+      </Text>
       }
       <Button onClick={onOpen}>Add Colaborator</Button>
       <Modal closeOnOverlayClick={false} isOpen={isOpen} onClose={onClose}>

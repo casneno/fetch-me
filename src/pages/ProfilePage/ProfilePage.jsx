@@ -25,7 +25,7 @@ export default function ProfilePage({ user }) {
 
 
   return (
-    <Flex direction="column" align="center" p={5}>
+    <Flex direction="column" align="center" p={5} fontFamily="'Kalam', sans-serif">
       {/* User Info */}
       <Flex align="center" mb={5}>
         <Avatar src={user.icon} size="2xl" mr={4} />

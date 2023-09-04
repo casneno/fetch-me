@@ -37,10 +37,10 @@ export default function NewCart({ user, orders, setOrders, newOrder, setNewOrder
           <ModalCloseButton color="primary.700" />
           <ModalBody pb={6}>
             <FormControl>
-              <FormLabel>What should we name this Cart?</FormLabel>
+              <FormLabel>What should we name this order?</FormLabel>
               <Input 
                 type='text' 
-                placeholder='order name' 
+                placeholder='Make it distinguishable...' 
                 name='name' 
                 value={newOrder.name} 
                 onChange={handleChange} 

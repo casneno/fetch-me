@@ -54,7 +54,8 @@ export default function OrderCard({ name, orderId, isOwner, isDeleteMode, onDele
               textAlign={['center']} 
               size='md'
               isTruncated 
-              noOfLines={2} 
+              noOfLines={2}
+              fontFamily="'Kalam', sans-serif" 
             >
               {name}
             </Heading>

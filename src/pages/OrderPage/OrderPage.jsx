@@ -69,6 +69,7 @@ useEffect(() => {
           direction='column'
           alignItems='center'
           overlfowY='hidden'
+          fontFamily="'Kalam', sans-serif"
       >
           <AvatarList
               as='header'
