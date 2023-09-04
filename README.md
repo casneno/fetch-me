@@ -10,7 +10,7 @@ This Fetch-Me app is the last of four projects in the General Assembly SEI Cours
 ![MongoDB](https://img.shields.io/badge/MongoDB-%234ea94b.svg?style=for-the-badge&logo=mongodb&logoColor=white) 
 ![NodeJS](https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white)
 ![Express.js](https://img.shields.io/badge/express.js-%23404d59.svg?style=for-the-badge&logo=express&logoColor=%2361DAFB)
-![React Router](https://img.shields.io/badge/React_Router-CA4245?style=for-the-badge&logo=react-router&logoColor=white) |
+![React Router](https://img.shields.io/badge/React_Router-CA4245?style=for-the-badge&logo=react-router&logoColor=white)
 ![Mongoose](https://img.shields.io/badge/Mongoose-880000.svg?style=for-the-badge&logo=Mongoose&logoColor=white)
 ![Chakra](https://img.shields.io/badge/chakra-%234ED1C5.svg?style=for-the-badge&logo=chakraui&logoColor=white)
 ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E.svg?style=for-the-badge&logo=JavaScript&logoColor=black)
@@ -24,9 +24,9 @@ Since this is a free Web-based app, anyone can use it without any requirements. 
 ## How to Navigate
 The app is currently running only it's mobile version, so in order to better visualize it, it is recommended for the user to run it on a viewport of 428x926 or smaller.
 
-| Landing Page | ![Landing Page](https://github.com/casneno/fetch-me/blob/main/src/images/screenshots/screenshot_landing_page.png)
+![Landing Page](https://github.com/casneno/fetch-me/blob/main/src/images/screenshots/screenshot_landing_page.png)
 
-| Shopping Page | ![Shopping Page](https://github.com/casneno/fetch-me/blob/main/src/images/screenshots/Screenshot_shopping.png)
+![Shopping Page](https://github.com/casneno/fetch-me/blob/main/src/images/screenshots/Screenshot_shopping.png)
 
 Once Signed-up and Logged in, the user is able to navigate the diferent pages by means of the navbar at the bottom of the screen.  The user can then add/remove other users from their friend list to favorite them or engage straight away in shopping by creating a new order and inviting others to colaborate.  When shopping, items that are added to the cart can be seen by toggling screens and then their quantities can be adjusted. To remove an item, you jsut need to reduce its quantity to zero.  When you are ready, proceed to your order review end, finalaly, to checkout. (currently the payment feature has not yet been implemented)
 
@@ -55,7 +55,7 @@ Node
 The app was first conceived within the Wireframe displayed below and it's display and functionalities were gradually improved as the development progressed.  The steps were organized acording to a Pseudocode (see below) and the development stages were checked and added/removed using Trello.
 
 
-| Wireframe | ![Wireframe](https://github.com/casneno/fetch-me/blob/main/src/images/screenshots/Screenshot_Wireframe.png)
+![Wireframe](https://github.com/casneno/fetch-me/blob/main/src/images/screenshots/Screenshot_Wireframe.png)
 
 
 The Trello Board served as a tool for the scrum framework, where MVP and Icebox features were presented and worked on as the project progressed.  It served as a starting point for all of the work that was done here.  Below, images of the Trello Board and the ERD.
@@ -192,7 +192,7 @@ Finally, the logic to perform adding and subtracting quantities in the cart was 
 ### Challenges
 
 Working on a project for the first time with React meant having to rewire my brain to work with states adn components.  Leveraging the power of states opened up to new possibilities and results in page display.  If I were to do this project again I would certainly leverage it even more.
-One of the biggest challenges I had was with CSS and page responsiveness, since I was trying to make a mobile app in React, without Native. and was using Chakra UI for the first time.
+One of the biggest challenges I had was with CSS and page responsiveness, since I was trying to make a mobile app in React, without Native. and was using Chakra UI for the first time.  The scroll bar was particularly cahlleging, because I wanted certain features to have it, while others needed to remain static on the page.
 
 ### Key Learnings
 
@@ -207,7 +207,7 @@ One of the biggest challenges I had was with CSS and page responsiveness, since 
 ### Future Improvements
 
 Here is a list of future improvements:
- * Allow for users to agree witha  cart before payment
+ * Allow for users to agree with a cart before payment
  * Implement Stripes payment
  * Implement a Food API to increase my database
- * Finish developinf the desktop view
+ * Finish developing the desktop view
