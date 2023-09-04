@@ -25,20 +25,8 @@ export default function NavBar({ user, setUser }) {
   };
 
   return (
-    <BottomNavigation 
-  onChange={handleChange} 
-  as='footer' 
-  position='fixed' 
-  bottom={0} 
-  left={0} 
-  right={0} 
-  w='100vw' 
-  height="70px" 
-  bg="primary.100"
-  shadow="md"
-  color="primary.900"
-  zIndex={10}
-><Flex justifyContent="space-between" w="100%" alignItems="center">
+    <BottomNavigation onChange={handleChange} as='footer' position='fixed' bottom={0} left={0} right={0} w='100vw' height="70px" bg="primary.100" shadow="md" color="primary.900" zIndex={10}>
+      <Flex justifyContent="space-between" w="100%" alignItems="center">
       <Link to="/" style={{ flexGrow: 1, margin: 0, padding: 0 }}>
         <BottomNavigationItem _hover={{ bgColor: "primary.200" }} p={2} m={0}w='100%'>
           <BottomNavigationIcon boxSize={6} as={FaHome} m={0}/>

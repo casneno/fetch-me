@@ -46,22 +46,7 @@ export default function ReviewOrder({ order, orderItems }) {
     </Tfoot>
   </Table>
 </TableContainer>
-            {/* <Box display="flex" alignItems="center" justifyContent="space-between" h={10} mt={2} pr={1} pl={3} borderBottom='2px' borderColor='black.200'>
-              <Text>Item</Text>
-              <Text>Qty</Text>
-              <Text>Price</Text>
-            </Box>
-            <VStack
-              divider={<StackDivider borderColor='gray.200' />}
-              spacing={0.5}
-              align='stretch'
-            >
-              {orderReviewList}
-            </VStack>
-            <Box display="flex" alignItems="center" justifyContent="space-between" h={10} mt={2} pr={1} pl={3} borderTop='2px' borderColor='black.200'>
-              <Text>TOTAL</Text>
-              <Text>${order.orderTotal.toFixed(2)}</Text>
-            </Box> */}
+            
 
           </ModalBody>
           <ModalFooter>

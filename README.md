@@ -136,83 +136,79 @@ useEffect(() => {
 }, [user._id]);
 ```
 
-Once I had a working authentication and login, I proceeded to working on the other pages. The order didn't really matter, since one page didn't rely on the other.  I chose to start with the friend's page in order to experiment with Chakra UI elements, since it was my first time using it.  Also, I enjoyed leveraging the power of React's state manipulation to create the search feature.  Once I was happy with the first layout and functionality results and went on to code the main functionalities...
+Once I had a working authentication and login, I proceeded to working on the navigation.  By looking into the Chakra UI community, i was able to find a third party Chakra-UI Bottom Navbar with good documentation to support it that worked perfectly after a few adjustments. After teh NAavbar was working, I proceeded to the other pages.  The order didn't really matter, since one page didn't rely on the other.  I chose to start with the friend's page in order to experiment with Chakra UI elements, since it was my first time using it.  Also, I enjoyed leveraging the power of React's state manipulation to create the search feature.  Once I was happy with the first layout and functionality results and went on to code the main functionalities...
 
-*Search Filter*
+*Search Filter adn Friends Display*
 ```sh
+const searchFriends = friends.filter(friend =>
+    friend.name.toLowerCase().includes(search.toLowerCase())
+  );
 
+  let friendsList = <strong>Sorry, but you have no friends at the moment</strong>
+
+  if (searchFriends.length > 0) {
+    friendsList = searchFriends.map(friend => (
+      <Box key={friend._id}>
+        <ColaboratorCard person={friend} isFriend={true} handleRemove={handleRemove} />
+      </Box>
+    ));
+  }
+
+  const searchStrangers = strangers.filter(stranger =>
+    stranger.name.toLowerCase().includes(search.toLowerCase())
+  );
+
+  let strangersList = <strong >Sorry, but there are no users at the moment</strong>
+
+  if (searchStrangers.length > 0) {
+    strangersList = searchStrangers.map(stranger => (
+      <Box key={stranger._id}>
+        <ColaboratorCard person={stranger} isFriend={false} handleAdd={handleAdd} />
+      </Box>
+    ));
+  }
 ```
 
-The Order Menu consisted of allowing the user to pick between his own orders or that in which he was a colaborator, which was easily done by having an order model with owner and colaborator fields.  Once an order was picked, the new page would dispaly several components, some of which remained on sreen and some others that eould toggle depending on state variables, such as Shopping and Cart views.
+The Order Menu consisted of allowing the user to pick between his own orders or that in which he was a colaborator, which was easily done by having an order model with owner and colaborator fields.  Once an order was picked, the new page would dispaly several components, some of which remained on screen and some others that eould toggle depending on state variables, such as Shopping and Cart views.
 
-*Handle the Player's Move*
+*Nav Bar*
 ```sh
-function handlePlayer(evt) {
-    if (!startGame) return;
-    if (turn === 1) {
-        const tgt = evt.target;
-        //Guards
-        if (tgt.className !== 'cell') return;
-        if (tgt.parentElement.parentElement.id !== 'aiboard') return; 
-        const colIdx = parseInt(tgt.id.split('').pop()); 
-        const rowIdx = parseInt(tgt.id.split('').slice(1,3)); 
-        const cellObj = {...aiBoardData[rowIdx][colIdx], hit:true}; 
-        aiBoardData[rowIdx][colIdx] = cellObj; 
-        if (cellObj.id !== 'w') {  
-            let shipHit = aiHudData.find((ship) => ship.name === cellObj.id);
-            shipHit.size--;
-            if (shipHit.size === 0) {
-                aiBoardData.forEach(function (rowArr, rowIdx) {
-                    rowArr.forEach(function (cellObj, colIdx) {
-                        if (cellObj.id === shipHit.name) { 
-                            cellObj = {...aiBoardData[rowIdx][colIdx], destroyed:true}; 
-                            aiBoardData[rowIdx][colIdx] = cellObj;
-                        }
-                    })
-                })
-            }
-            tgt.classList.add(shipHit.name);
-        }
-        winner = getWinner();
-        turn *= -1;
-        render();
-    } return;
-}
+<BottomNavigation onChange={handleChange} as='footer' position='fixed' bottom={0} left={0} right={0} w='100vw' height="70px" bg="primary.100" shadow="md" color="primary.900" zIndex={10}>
+      <Flex justifyContent="space-between" w="100%" alignItems="center">
+      <Link to="/" style={{ flexGrow: 1, margin: 0, padding: 0 }}>
+        <BottomNavigationItem _hover={{ bgColor: "primary.200" }} p={2} m={0}w='100%'>
+          <BottomNavigationIcon boxSize={6} as={FaHome} m={0}/>
+          <BottomNavigationLabel fontSize="sm" mt={0}>Home</BottomNavigationLabel>
+        </BottomNavigationItem>
+      </Link>
+      ...
+      </Flex>
+    </BottomNavigation>
+  )
 ```
 Coding the add/remove colaborator fucntionality, one of the diferentials in the app, was very simialr to coding the add/remove  friends, except for the added logic of having a third state involved ('colab').  Toggling between pages was as simple as querying a true/false 'switch' state and most of the Item Display card was reused in the Order Item card (once it is in the cart).
 
-Finally, the logic to perform adding and subtracting quantities in the cart was done through the use of methods defined in the order model.  This  
-
+Finally, the logic to perform adding and subtracting quantities in the cart was done through the use of methods defined in the order model.  This allowed for more DRY code. 
 
 ### Challenges
 
-The game wasn't without it's challenges.  One first challenge I faced was how to get teh grid display properly comunicating with the 2D array so that it would be responsive to any changes I made to the objects. Next, came the array update codes: both HUD displays were being updated when the 'shots' were being taken.  At the time I wasn't so familiar with the spread operator and the array cloning process, so it took me some time to figure out that I needed to make a deep copy of my array, since they both originated from the same constant and thus had the same reference. The AI behaviour wasn't much of a challenge, but more of a process of mimicking the human thought process. 
-Another challenging feature was the randomPlacement function and it's guards.  I had to make a check function to make sure that the space the ship was being placed was within the grid limits and did not overlap other ships.
-
-### Wins
-
-The game itself was a win for myself, having been the fist game I developed in any language (apart from the tic-tac-toe).  Having commited to the decision of working with objects was another win, since it took a lot of work and learning in the begining but now the flexibility it gave the game is finally paying off.  Finally, I would say that breaking the human thought process and implementing it into the AI's logic was also a win. 
+Working on a project for the first time with React meant having to rewire my brain to work with states adn components.  Leveraging the power of states opened up to new possibilities and results in page display.  If I were to do this project again I would certainly leverage it even more.
+One of the biggest challenges I had was with CSS and page responsiveness, since I was trying to make a mobile app in React, without Native. and was using Chakra UI for the first time.
 
 ### Key Learnings
 
- * DEBUGGING through DevTools and console.logs.
- * How to apply the PEAR method to explain issues to others in a way that they can help me.
- * How to better make use of DOM APIs such as selectors, event listeners, elemnt creation and appending, styling and attribute manipulations in JS.
- * How to make use MDN Web DOCs, W3Schools, GeeksforGeeks, StackOverflow and other online resources when I get stuck.
- * If I were to rebuild my code, I would do it using arrow functions instead of declarations for their practicality and shorthand.
+ * Deployment of a full MERN aplication
+ * Use Chakra UI
+ * Managing and leveraging state and effect 
 
 ### Bugs & Known Issues
 
-* The MVP version has no Bugs in it and is fully functional.
-* The player is wrongly able to click anywhere he has already clicked in the AI Board.
-* The Replay Button doesn't change it's text when there is a winner.
+* The MVP version work only in screen sizes below 428xp, since it was developed for mobile.
 
 ### Future Improvements
 
 Here is a list of future improvements:
- * Allow for amnual ship placement, click&drag and with hover effects;
- * Include sound and visual effects. inlcude some epic music;
- * Start the game with a start screen with some game context for immersion and a Insert Player name holder;
- * Develop an option for a 2-player game, taking turns on the same PC (can't peek!)
- * Improve the background by drawing the shoreline + include sprites for the ships, giving the game a more realistic feel.
- * Implement special weapons and maybe a mid-game suffling mechanism, allowing for ships to escape their doom
+ * Allow for users to agree witha  cart before payment
+ * Implement Stripes payment
+ * Implement a Food API to increase my database
+ * Finish developinf the desktop view
