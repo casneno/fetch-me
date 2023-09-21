@@ -19,7 +19,7 @@ This Fetch-Me app is the last of four projects in the General Assembly SEI Cours
 
 
 ### Try it out!
-Since this is a free Web-based app, anyone can use it without any requirements. Just click this [link](https://fetch-me-bcf56e1c2a03.herokuapp.com/) to play the game!  
+Since this is a free Web-based app, anyone can use it without any requirements. Just click this [link](https://fetch-me-bcf56e1c2a03.herokuapp.com/) to try it out!  
 
 ## How to Navigate
 The app is currently running only it's mobile version, so in order to better visualize it, it is recommended for the user to run it on a viewport of 428x926 or smaller.
