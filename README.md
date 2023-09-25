@@ -28,7 +28,7 @@ The app is currently running only it's mobile version, so in order to better vis
 
 ![Shopping Page](https://github.com/casneno/fetch-me/blob/main/src/images/screenshots/Screenshot_shopping.png)
 
-Once Signed-up and Logged in, the user is able to navigate the diferent pages by means of the navbar at the bottom of the screen.  The user can then add/remove other users from their friend list to favorite them or engage straight away in shopping by creating a new order and inviting others to colaborate.  When shopping, items that are added to the cart can be seen by toggling screens and then their quantities can be adjusted. To remove an item, you jsut need to reduce its quantity to zero.  When you are ready, proceed to your order review end, finalaly, to checkout. (currently the payment feature has not yet been implemented)
+Once signed-up and logged in, the user is able to navigate the diferent pages by means of the navbar at the bottom of the screen.  The user can then add/remove other users from their friend list, favorite them or engage straight away in shopping by creating a new order and inviting others to colaborate.  When shopping, items that are added to the cart can be seen by toggling between screens and then their quantities can be adjusted. To remove an item, you just need to reduce its quantity to zero.  When you are ready, proceed to your order review end, finally, to checkout. (currently the payment feature has not yet been implemented)
 
 ## Brief
 
